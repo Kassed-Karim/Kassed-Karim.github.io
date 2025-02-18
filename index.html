@@ -5,23 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل الدخول</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: url('https://raw.githubusercontent.com/Kassed-Karim/Kassed-Karim.github.io/main/lolo.jpg') no-repeat center center fixed;
+            background: url('https://raw.githubusercontent.com/Kassed-Karim/Kassed-Karim.github.io/main/new.jpg') no-repeat center center fixed;
             background-size: 75%;
-            background-position: center;
-            background-repeat: no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
 
         .login-container {
@@ -30,53 +23,43 @@
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
-            text-align: center;
-        }
-
-        .login-container h2 {
-            margin-bottom: 20px;
-        }
-
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        .input-group {
-            width: 80%;
-            text-align: right; /* لمحاذاة النصوص بشكل مناسب */
-            margin-bottom: 15px;
+            text-align: right;
         }
 
         label {
-            display: block;
-            font-size: 14px;
             font-weight: bold;
+            display: block;
+            text-align: right;
             margin-bottom: 5px;
         }
 
         input {
             width: 100%;
             padding: 10px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            text-align: center;
+            display: block;
         }
 
         button {
-            width: 80%;
+            width: 100%;
             padding: 10px;
             background-color: #28a745;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
         }
 
         button:hover {
             background-color: #218838;
+        }
+
+        #error {
+            color: red;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -84,18 +67,14 @@
 
     <div class="login-container">
         <h2>تسجيل الدخول</h2>
-        <div class="input-container">
-            <div class="input-group">
-                <label for="username">اسم المستخدم</label>
-                <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
-            </div>
-            <div class="input-group">
-                <label for="password">كلمة المرور</label>
-                <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-            </div>
-            <button onclick="login()">تسجيل الدخول</button>
-        </div>
-        <p id="error" style="color: red;"></p>
+        <label for="username">اسم المستخدم</label>
+        <input type="text" id="username" placeholder="ادخل اسم المستخدم" required>
+
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" placeholder="ادخل كلمة المرور" required>
+
+        <button onclick="login()">تسجيل الدخول</button>
+        <p id="error"></p>
     </div>
 
     <script>
@@ -103,12 +82,10 @@
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
 
-            // اسم المستخدم وكلمة المرور الصحيحة (يمكنك تغييرها)
             var correctUsername = "admin";
             var correctPassword = "1234";
 
             if (username === correctUsername && password === correctPassword) {
-                // توجيه المستخدم إلى صفحة الشكاوى
                 window.location.href = "complaint.html";
             } else {
                 document.getElementById("error").innerText = "بيانات الدخول غير صحيحة!";
