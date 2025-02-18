@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج الشكاوى</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin: 50px auto;
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>إرسال شكوى</h2>
+        <input type="text" id="name" placeholder="اسم المشتكي" required>
+        <input type="text" id="phone" placeholder="رقم الهاتف" required>
+        <textarea id="complaint" placeholder="تفاصيل الشكوى" rows="5" required></textarea>
+        <button onclick="submitComplaint()">إرسال الشكوى</button>
+    </div>
+
+    <script>
+        function submitComplaint() {
+            var name = document.getElementById("name").value;
+            var phone = document.getElementById("phone").value;
+            var complaint = document.getElementById("complaint").value;
+
+            if (name && phone && complaint) {
+                alert("تم إرسال الشكوى بنجاح!");
+                document.getElementById("name").value = "";
+                document.getElementById("phone").value = "";
+                document.getElementById("complaint").value = "";
+            } else {
+                alert("يرجى ملء جميع الحقول.");
+            }
+        }
+    </script>
+
+</body>
+</html>
