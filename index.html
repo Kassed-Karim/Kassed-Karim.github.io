@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل الدخول</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -12,27 +18,42 @@
             background-size: 75%;
             background-position: center;
             background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .login-container {
-            margin: 100px auto;
             width: 300px;
             padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         input {
-            width: 100%;
+            width: 80%; /* جعل الحقول أصغر داخل المربع */
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
+            text-align: center; /* لجعل النص داخل الحقل في المنتصف */
         }
 
         button {
-            width: 100%;
+            width: 80%;
             padding: 10px;
             background-color: #28a745;
             color: white;
@@ -50,9 +71,11 @@
 
     <div class="login-container">
         <h2>تسجيل الدخول</h2>
-        <input type="text" id="username" placeholder="اسم المستخدم" required>
-        <input type="password" id="password" placeholder="كلمة المرور" required>
-        <button onclick="login()">تسجيل الدخول</button>
+        <div class="input-container">
+            <input type="text" id="username" placeholder="اسم المستخدم" required>
+            <input type="password" id="password" placeholder="كلمة المرور" required>
+            <button onclick="login()">تسجيل الدخول</button>
+        </div>
         <p id="error" style="color: red;"></p>
     </div>
 
