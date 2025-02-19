@@ -24,6 +24,10 @@
             background-color: #007bff;
             color: white;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
         }
 
         .sidebar h2 {
@@ -45,6 +49,13 @@
 
         .sidebar ul li:hover {
             background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .language-switch {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            text-align: center;
         }
 
         .content {
@@ -76,31 +87,26 @@
         .status.running { background-color: blue; }
         .status.complete { background-color: green; }
         .status.draft { background-color: gray; }
-
-        .language-switch {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
     </style>
 </head>
 <body>
-    <div class="language-switch">
-        <select id="language" onchange="changeLanguage()">
-            <option value="ar">العربية</option>
-            <option value="en">English</option>
-        </select>
-    </div>
-    
     <div class="sidebar">
-        <h2 id="dashboard-title">لوحة التحكم</h2>
-        <ul>
-            <li data-en="Dashboard" data-ar="لوحة التحكم">لوحة التحكم</li>
-            <li data-en="Campaigns" data-ar="الحملات">الحملات</li>
-            <li data-en="Lists" data-ar="القوائم">القوائم</li>
-            <li data-en="Subscribers" data-ar="المشتركين">المشتركين</li>
-            <li data-en="Settings" data-ar="الإعدادات">الإعدادات</li>
-        </ul>
+        <div>
+            <h2 id="dashboard-title">لوحة التحكم</h2>
+            <ul>
+                <li data-en="Dashboard" data-ar="لوحة التحكم">لوحة التحكم</li>
+                <li data-en="Campaigns" data-ar="الحملات">الحملات</li>
+                <li data-en="Lists" data-ar="القوائم">القوائم</li>
+                <li data-en="Subscribers" data-ar="المشتركين">المشتركين</li>
+                <li data-en="Settings" data-ar="الإعدادات">الإعدادات</li>
+            </ul>
+        </div>
+        <div class="language-switch">
+            <select id="language" onchange="changeLanguage()">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
+        </div>
     </div>
     <div class="content">
         <div class="cards">
@@ -110,9 +116,6 @@
             <div class="card"><div class="status running">RUNNING</div><h3>New Campaign</h3><p>March 28, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
             <div class="card"><div class="status complete">COMPLETE</div><h3>Another Campaign</h3><p>March 29, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
             <div class="card"><div class="status draft">DRAFT</div><h3>Sample Campaign</h3><p>March 30, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status running">RUNNING</div><h3>Additional Campaign</h3><p>March 31, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status complete">COMPLETE</div><h3>Final Campaign</h3><p>April 1, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status draft">DRAFT</div><h3>Last Campaign</h3><p>April 2, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
         </div>
     </div>
 
