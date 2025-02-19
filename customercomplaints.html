@@ -144,10 +144,11 @@
         document.addEventListener("DOMContentLoaded", () => {
             const savedLanguage = localStorage.getItem("language") || "en";
             document.getElementById("language-select").value = savedLanguage;
-            changeLanguage(savedLanguage);
+            changeLanguage();
         });
 
-        function changeLanguage(lang) {
+        function changeLanguage() {
+            const lang = document.getElementById("language-select").value;
             const elements = {
                 "title": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
                 "addComplaint": { en: "Add Complaint", ar: "إضافة شكوى" },
@@ -205,8 +206,8 @@
             localStorage.setItem("language", lang);
         }
 
-        document.getElementById("language-select").addEventListener("change", (event) => {
-            changeLanguage(event.target.value);
+        document.getElementById("language-select").addEventListener("change", () => {
+            changeLanguage();
         });
     </script>
 </head>
