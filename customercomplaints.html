@@ -83,6 +83,18 @@
         .card-yellow { background-color: #ffc107; color: black; }
         .card-green { background-color: #28a745; color: white; }
     </style>
+    <script>
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+            location.reload();
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let savedLang = localStorage.getItem("selectedLanguage") || "ar";
+            document.documentElement.lang = savedLang;
+        });
+    </script>
 </head>
 <body>
     <div class="sidebar">
@@ -99,6 +111,10 @@
         <div class="top-bar">
             <h2>Dashboard</h2>
             <input type="text" placeholder="Search Complaints">
+            <select onchange="changeLanguage(this.value)">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+            </select>
         </div>
         <div class="content">
             <h3>Pending Complaints</h3>
