@@ -58,11 +58,13 @@
             text-align: center;
         }
 
-        .language-switch img {
-            width: 30px;
-            height: 20px;
+        .language-switch button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
             cursor: pointer;
-            margin: 0 5px;
+            margin: 5px;
         }
 
         .content {
@@ -109,8 +111,8 @@
             </ul>
         </div>
         <div class="language-switch">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_England.svg" alt="English" onclick="setLanguage('en')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg" alt="العربية" onclick="setLanguage('ar')">
+            <button onclick="setLanguage('en')">English</button>
+            <button onclick="setLanguage('ar')">العربية</button>
         </div>
     </div>
     <div class="content">
@@ -121,9 +123,11 @@
             <div class="card"><div class="status running" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div><h3>Dolor sit amet</h3><p>April 1, 2018 5:00 PM</p><p>Another campaign description</p></div>
             <div class="card"><div class="status complete" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div><h3>Consectetur adipiscing</h3><p>April 2, 2018 6:00 PM</p><p>Another campaign subject</p></div>
             <div class="card"><div class="status draft" data-en="DRAFT" data-ar="مسودة">DRAFT</div><h3>Elit sed do eiusmod</h3><p>April 3, 2018 7:00 PM</p><p>Another campaign subject</p></div>
+            <div class="card"><div class="status running" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div><h3>New Campaign</h3><p>April 4, 2018 8:00 PM</p><p>Additional campaign information</p></div>
+            <div class="card"><div class="status complete" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div><h3>Extra Campaign</h3><p>April 5, 2018 9:00 PM</p><p>Another additional subject</p></div>
+            <div class="card"><div class="status draft" data-en="DRAFT" data-ar="مسودة">DRAFT</div><h3>Final Campaign</h3><p>April 6, 2018 10:00 PM</p><p>Last campaign subject</p></div>
         </div>
     </div>
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var savedLanguage = localStorage.getItem("language") || "ar";
@@ -135,14 +139,8 @@
             document.documentElement.lang = language;
             document.getElementById("dashboard-title").innerText = language === "en" ? "Dashboard" : "لوحة التحكم";
             
-            var items = document.querySelectorAll(".sidebar ul li");
-            items.forEach(function(item) {
-                item.innerText = language === "en" ? item.getAttribute("data-en") : item.getAttribute("data-ar");
-            });
-
-            var statuses = document.querySelectorAll(".status");
-            statuses.forEach(function(status) {
-                status.innerText = language === "en" ? status.getAttribute("data-en") : status.getAttribute("data-ar");
+            document.querySelectorAll(".sidebar ul li, .status").forEach(function(element) {
+                element.innerText = element.getAttribute("data-" + language);
             });
         }
     </script>
