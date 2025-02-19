@@ -109,15 +109,69 @@
         }
     </style>
     <script>
+        const translations = {
+            en: {
+                title: "Complaint System",
+                dashboard: "Dashboard",
+                complaints: "Complaints",
+                customers: "Customers",
+                settings: "Settings",
+                pendingComplaints: "Pending Complaints",
+                addComplaint: "Add Complaint",
+                tableHeaders: ["#", "Subject", "Engineer Status", "Complaint Type", "Product Serial No.", "Opened Since", "Actions"],
+                batteryIssue: "Battery Issue",
+                screenProblem: "Screen Problem",
+                assigned: "Assigned",
+                unassigned: "Unassigned",
+                warranty: "Warranty",
+                nonWarranty: "Non-Warranty",
+                oneMonth: "1 month",
+                twoWeeks: "2 weeks"
+            },
+            ar: {
+                title: "نظام الشكاوى",
+                dashboard: "لوحة التحكم",
+                complaints: "الشكاوى",
+                customers: "العملاء",
+                settings: "الإعدادات",
+                pendingComplaints: "الشكاوى المعلقة",
+                addComplaint: "إضافة شكوى",
+                tableHeaders: ["#", "الموضوع", "حالة المهندس", "نوع الشكوى", "الرقم التسلسلي للمنتج", "مفتوحة منذ", "الإجراءات"],
+                batteryIssue: "مشكلة البطارية",
+                screenProblem: "مشكلة الشاشة",
+                assigned: "مُسند",
+                unassigned: "غير مُسند",
+                warranty: "ضمان",
+                nonWarranty: "بدون ضمان",
+                oneMonth: "شهر واحد",
+                twoWeeks: "أسبوعان"
+            }
+        };
+
         function changeLanguage() {
             var lang = document.getElementById("language").value;
-            if (lang === "ar") {
-                document.documentElement.lang = "ar";
-                document.body.style.direction = "rtl";
-            } else {
-                document.documentElement.lang = "en";
-                document.body.style.direction = "ltr";
-            }
+            document.documentElement.lang = lang;
+            document.body.style.direction = lang === "ar" ? "rtl" : "ltr";
+            document.querySelector(".sidebar h2").textContent = translations[lang].title;
+            document.querySelectorAll(".sidebar ul li")[0].textContent = translations[lang].dashboard;
+            document.querySelectorAll(".sidebar ul li")[1].textContent = translations[lang].complaints;
+            document.querySelectorAll(".sidebar ul li")[2].textContent = translations[lang].customers;
+            document.querySelectorAll(".sidebar ul li")[3].textContent = translations[lang].settings;
+            document.querySelector("header h1").textContent = translations[lang].pendingComplaints;
+            document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${translations[lang].addComplaint}`;
+            let headers = document.querySelectorAll("th");
+            translations[lang].tableHeaders.forEach((text, index) => {
+                headers[index].textContent = text;
+            });
+            let rows = document.querySelectorAll("tbody tr");
+            rows[0].children[1].textContent = translations[lang].batteryIssue;
+            rows[0].children[2].textContent = translations[lang].assigned;
+            rows[0].children[3].textContent = translations[lang].warranty;
+            rows[0].children[5].textContent = translations[lang].oneMonth;
+            rows[1].children[1].textContent = translations[lang].screenProblem;
+            rows[1].children[2].textContent = translations[lang].unassigned;
+            rows[1].children[3].textContent = translations[lang].nonWarranty;
+            rows[1].children[5].textContent = translations[lang].twoWeeks;
         }
     </script>
 </head>
@@ -126,10 +180,10 @@
         <div>
             <h2>Complaint System</h2>
             <ul>
-                <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
-                <li><i class="fas fa-list"></i> Complaints</li>
-                <li><i class="fas fa-user"></i> Customers</li>
-                <li><i class="fas fa-cog"></i> Settings</li>
+                <li>Dashboard</li>
+                <li>Complaints</li>
+                <li>Customers</li>
+                <li>Settings</li>
             </ul>
         </div>
         <div class="language-switch">
@@ -156,32 +210,6 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Battery Issue</td>
-                    <td>Assigned</td>
-                    <td>Warranty</td>
-                    <td>12345</td>
-                    <td class="alert">1 month</td>
-                    <td>
-                        <button class="view"><i class="fas fa-eye"></i></button>
-                        <button class="edit"><i class="fas fa-edit"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Screen Problem</td>
-                    <td>Unassigned</td>
-                    <td>Non-Warranty</td>
-                    <td>67890</td>
-                    <td class="alert">2 weeks</td>
-                    <td>
-                        <button class="view"><i class="fas fa-eye"></i></button>
-                        <button class="edit"><i class="fas fa-edit"></i></button>
-                    </td>
-                </tr>
-            </tbody>
         </table>
     </div>
 </body>
