@@ -99,25 +99,25 @@
         function changeLanguage() {
             let lang = document.getElementById("language").value;
             let elements = {
-                "Pending Complaints": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
-                "Add Complaint": { en: "Add Complaint", ar: "إضافة شكوى" },
-                "Dashboard": { en: "Dashboard", ar: "لوحة التحكم" },
-                "Complaints": { en: "Complaints", ar: "الشكاوى" },
-                "Customers": { en: "Customers", ar: "العملاء" },
-                "Settings": { en: "Settings", ar: "الإعدادات" },
-                "Complaint System": { en: "Complaint System", ar: "نظام الشكاوى" },
-                "#": { en: "#", ar: "#" },
-                "Subject": { en: "Subject", ar: "الموضوع" },
-                "Engineer Status": { en: "Engineer Status", ar: "حالة المهندس" },
-                "Complaint Type": { en: "Complaint Type", ar: "نوع الشكوى" },
-                "Product Serial No.": { en: "Product Serial No.", ar: "الرقم التسلسلي للمنتج" },
-                "Opened Since": { en: "Opened Since", ar: "تم الفتح منذ" },
-                "Actions": { en: "Actions", ar: "الإجراءات" }
+                "pending": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
+                "add": { en: "Add Complaint", ar: "إضافة شكوى" },
+                "dashboard": { en: "Dashboard", ar: "لوحة التحكم" },
+                "complaints": { en: "Complaints", ar: "الشكاوى" },
+                "customers": { en: "Customers", ar: "العملاء" },
+                "settings": { en: "Settings", ar: "الإعدادات" },
+                "system": { en: "Complaint System", ar: "نظام الشكاوى" },
+                "subject": { en: "Subject", ar: "الموضوع" },
+                "engineer": { en: "Engineer Status", ar: "حالة المهندس" },
+                "type": { en: "Complaint Type", ar: "نوع الشكوى" },
+                "serial": { en: "Product Serial No.", ar: "الرقم التسلسلي للمنتج" },
+                "opened": { en: "Opened Since", ar: "تم الفتح منذ" },
+                "actions": { en: "Actions", ar: "الإجراءات" }
             };
             
-            document.querySelectorAll("h1, button, .sidebar h2, .sidebar ul li, th").forEach(el => {
-                if (elements[el.innerText.trim()]) {
-                    el.innerText = elements[el.innerText.trim()][lang];
+            document.querySelectorAll("[data-key]").forEach(el => {
+                let key = el.getAttribute("data-key");
+                if (elements[key]) {
+                    el.innerText = elements[key][lang];
                 }
             });
         }
@@ -126,12 +126,12 @@
 <body>
     <div class="sidebar">
         <div>
-            <h2>Complaint System</h2>
+            <h2 data-key="system">Complaint System</h2>
             <ul>
-                <li>Dashboard</li>
-                <li>Complaints</li>
-                <li>Customers</li>
-                <li>Settings</li>
+                <li data-key="dashboard">Dashboard</li>
+                <li data-key="complaints">Complaints</li>
+                <li data-key="customers">Customers</li>
+                <li data-key="settings">Settings</li>
             </ul>
         </div>
         <div class="language-switch">
@@ -143,19 +143,19 @@
     </div>
     <div class="main-content">
         <header>
-            <h1>Pending Complaints</h1>
-            <button class="add-complaint"><i class="fas fa-plus"></i> Add Complaint</button>
+            <h1 data-key="pending">Pending Complaints</h1>
+            <button class="add-complaint" data-key="add"><i class="fas fa-plus"></i> Add Complaint</button>
         </header>
         <table>
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Subject</th>
-                    <th>Engineer Status</th>
-                    <th>Complaint Type</th>
-                    <th>Product Serial No.</th>
-                    <th>Opened Since</th>
-                    <th>Actions</th>
+                    <th data-key="subject">Subject</th>
+                    <th data-key="engineer">Engineer Status</th>
+                    <th data-key="type">Complaint Type</th>
+                    <th data-key="serial">Product Serial No.</th>
+                    <th data-key="opened">Opened Since</th>
+                    <th data-key="actions">Actions</th>
                 </tr>
             </thead>
             <tbody>
