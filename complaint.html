@@ -3,68 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نموذج الشكاوى</title>
+    <title>لوحة التحكم</title>
     <style>
-        body {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
-            text-align: center;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
             background-color: #f4f4f4;
         }
-        .container {
-            margin: 50px auto;
-            width: 400px;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
+
+        .sidebar {
+            width: 250px;
             background-color: #007bff;
             color: white;
-            border: none;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #0056b3;
+
+        .sidebar ul li:hover {
+            background-color: rgba(255, 255, 255, 0.5);
         }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .card .status {
+            padding: 5px;
+            border-radius: 4px;
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .status.running { background-color: blue; }
+        .status.complete { background-color: green; }
+        .status.draft { background-color: gray; }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h2>إرسال شكوى</h2>
-        <input type="text" id="name" placeholder="اسم المشتكي" required>
-        <input type="text" id="phone" placeholder="رقم الهاتف" required>
-        <textarea id="complaint" placeholder="تفاصيل الشكوى" rows="5" required></textarea>
-        <button onclick="submitComplaint()">إرسال الشكوى</button>
+    <div class="sidebar">
+        <h2>لوحة التحكم</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Campaigns</li>
+            <li>Lists</li>
+            <li>Subscribers</li>
+            <li>Settings</li>
+        </ul>
     </div>
-
-    <script>
-        function submitComplaint() {
-            var name = document.getElementById("name").value;
-            var phone = document.getElementById("phone").value;
-            var complaint = document.getElementById("complaint").value;
-
-            if (name && phone && complaint) {
-                alert("تم إرسال الشكوى بنجاح!");
-                document.getElementById("name").value = "";
-                document.getElementById("phone").value = "";
-                document.getElementById("complaint").value = "";
-            } else {
-                alert("يرجى ملء جميع الحقول.");
-            }
-        }
-    </script>
-
+    <div class="content">
+        <h2>35 حملة</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="status running">RUNNING</div>
+                <h3>Sed ut perspiciatis</h3>
+                <p>March 27, 2018 10:00 PM</p>
+                <p>Campaign subject can be two lines and placed here</p>
+            </div>
+            <div class="card">
+                <div class="status complete">COMPLETE</div>
+                <h3>Lorem ipsum dolor</h3>
+                <p>March 27, 2018 10:00 PM</p>
+                <p>Campaign subject can be two lines and placed here</p>
+            </div>
+            <div class="card">
+                <div class="status draft">DRAFT</div>
+                <h3>Accusantium dolor</h3>
+                <p>March 27, 2018 10:00 PM</p>
+                <p>Campaign subject can be two lines and placed here</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
