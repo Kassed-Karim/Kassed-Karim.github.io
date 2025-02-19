@@ -21,6 +21,9 @@
             color: white;
             padding: 20px;
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .sidebar h2 {
             text-align: center;
@@ -36,6 +39,20 @@
         }
         .sidebar ul li:hover {
             background: #0056b3;
+        }
+        .language-switch {
+            text-align: center;
+            padding: 10px;
+            background: #0056b3;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .language-switch select {
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 16px;
         }
         .main-content {
             flex: 1;
@@ -91,16 +108,36 @@
             color: #f39c12;
         }
     </style>
+    <script>
+        function changeLanguage() {
+            var lang = document.getElementById("language").value;
+            if (lang === "ar") {
+                document.documentElement.lang = "ar";
+                document.body.style.direction = "rtl";
+            } else {
+                document.documentElement.lang = "en";
+                document.body.style.direction = "ltr";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="sidebar">
-        <h2>Complaint System</h2>
-        <ul>
-            <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
-            <li><i class="fas fa-list"></i> Complaints</li>
-            <li><i class="fas fa-user"></i> Customers</li>
-            <li><i class="fas fa-cog"></i> Settings</li>
-        </ul>
+        <div>
+            <h2>Complaint System</h2>
+            <ul>
+                <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+                <li><i class="fas fa-list"></i> Complaints</li>
+                <li><i class="fas fa-user"></i> Customers</li>
+                <li><i class="fas fa-cog"></i> Settings</li>
+            </ul>
+        </div>
+        <div class="language-switch">
+            <select id="language" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
     </div>
     <div class="main-content">
         <header>
