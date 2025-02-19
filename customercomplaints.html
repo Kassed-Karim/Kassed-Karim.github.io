@@ -94,6 +94,17 @@
             background: #34495e;
             color: white;
         }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .actions i {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .actions i:hover {
+            color: #007BFF;
+        }
     </style>
     <script>
         function changeLanguage() {
@@ -173,9 +184,48 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>1</td><td>1001</td><td>Battery Issue</td><td>John Doe</td><td>+123456789</td><td>Warranty</td><td>Engineer A</td><td>Open</td></tr>
-                <tr><td>2</td><td>1002</td><td>Screen Issue</td><td>Jane Smith</td><td>+987654321</td><td>Out of Warranty</td><td>Engineer B</td><td>Pending</td></tr>
-                <tr><td>3</td><td>1003</td><td>Software Issue</td><td>Alice Brown</td><td>+1122334455</td><td>Technical Support</td><td>Engineer C</td><td>Resolved</td></tr>
+                <tr>
+                    <td>1</td>
+                    <td>1001</td>
+                    <td>Battery Issue</td>
+                    <td>John Doe</td>
+                    <td>+123456789</td>
+                    <td>Warranty</td>
+                    <td>Engineer A</td>
+                    <td>Open</td>
+                    <td class="actions">
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>1002</td>
+                    <td>Screen Issue</td>
+                    <td>Jane Smith</td>
+                    <td>+987654321</td>
+                    <td>Out of Warranty</td>
+                    <td>Engineer B</td>
+                    <td>Pending</td>
+                    <td class="actions">
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>1003</td>
+                    <td>Software Issue</td>
+                    <td>Alice Brown</td>
+                    <td>+1122334455</td>
+                    <td>Technical Support</td>
+                    <td>Engineer C</td>
+                    <td>Resolved</td>
+                    <td class="actions">
+                        <i class="fas fa-edit"></i>
+                        <i class="fas fa-trash-alt"></i>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
