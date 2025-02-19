@@ -16,7 +16,7 @@
             display: flex;
             flex-direction: row-reverse;
             height: 100vh;
-            background-color: #f4f4f4;
+            background-color: orange;
         }
 
         .sidebar {
@@ -79,23 +79,14 @@
         }
 
         .card {
-            background-color: white;
-            padding: 15px;
+            background-color: blue;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .card .status {
-            padding: 5px;
-            border-radius: 4px;
             color: white;
             text-align: center;
-            margin-bottom: 10px;
+            font-size: 20px;
         }
-
-        .status.running { background-color: blue; }
-        .status.complete { background-color: green; }
-        .status.draft { background-color: gray; }
     </style>
 </head>
 <body>
@@ -117,15 +108,15 @@
     </div>
     <div class="content">
         <div class="cards">
-            <div class="card"><div class="status running" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div><h3>Sed ut perspiciatis</h3><p>March 27, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status complete" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div><h3>Lorem ipsum dolor</h3><p>March 27, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status draft" data-en="DRAFT" data-ar="مسودة">DRAFT</div><h3>Accusantium dolor</h3><p>March 27, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status running" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div><h3>Dolor sit amet</h3><p>April 1, 2018 5:00 PM</p><p>Another campaign description</p></div>
-            <div class="card"><div class="status complete" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div><h3>Consectetur adipiscing</h3><p>April 2, 2018 6:00 PM</p><p>Another campaign subject</p></div>
-            <div class="card"><div class="status draft" data-en="DRAFT" data-ar="مسودة">DRAFT</div><h3>Elit sed do eiusmod</h3><p>April 3, 2018 7:00 PM</p><p>Another campaign subject</p></div>
-            <div class="card"><div class="status running" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div><h3>New Campaign</h3><p>April 4, 2018 8:00 PM</p><p>Additional campaign information</p></div>
-            <div class="card"><div class="status complete" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div><h3>Extra Campaign</h3><p>April 5, 2018 9:00 PM</p><p>Another additional subject</p></div>
-            <div class="card"><div class="status draft" data-en="DRAFT" data-ar="مسودة">DRAFT</div><h3>Final Campaign</h3><p>April 6, 2018 10:00 PM</p><p>Last campaign subject</p></div>
+            <div class="card" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div>
+            <div class="card" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div>
+            <div class="card" data-en="DRAFT" data-ar="مسودة">DRAFT</div>
+            <div class="card" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div>
+            <div class="card" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div>
+            <div class="card" data-en="DRAFT" data-ar="مسودة">DRAFT</div>
+            <div class="card" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div>
+            <div class="card" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div>
+            <div class="card" data-en="DRAFT" data-ar="مسودة">DRAFT</div>
         </div>
     </div>
     <script>
@@ -139,7 +130,7 @@
             document.documentElement.lang = language;
             document.getElementById("dashboard-title").innerText = language === "en" ? "Dashboard" : "لوحة التحكم";
             
-            document.querySelectorAll(".sidebar ul li, .status").forEach(function(element) {
+            document.querySelectorAll(".sidebar ul li, .card").forEach(function(element) {
                 element.innerText = element.getAttribute("data-" + language);
             });
         }
