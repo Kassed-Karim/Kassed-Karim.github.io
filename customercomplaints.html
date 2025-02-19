@@ -96,6 +96,46 @@
             color: white;
         }
     </style>
+    <script>
+        function changeLanguage() {
+            const lang = document.getElementById("language-select").value;
+            const elements = {
+                "title": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
+                "addComplaint": { en: "Add Complaint", ar: "إضافة شكوى" },
+                "menu": { en: "Menu", ar: "القائمة" },
+                "dashboard": { en: "Dashboard", ar: "لوحة التحكم" },
+                "complaints": { en: "Complaints", ar: "الشكاوى" },
+                "reports": { en: "Reports", ar: "التقارير" },
+                "settings": { en: "Settings", ar: "الإعدادات" },
+                "languageLabel": { en: "Language:", ar: "اللغة:" },
+                "tableHeaders": [
+                    { en: "#", ar: "#" },
+                    { en: "User", ar: "المستخدم" },
+                    { en: "Customer Name", ar: "اسم العميل" },
+                    { en: "Contact Number", ar: "رقم الاتصال" },
+                    { en: "Complaint Type", ar: "نوع الشكوى" },
+                    { en: "Assigned To", ar: "مكلف إلى" },
+                    { en: "Complaint Status", ar: "حالة الشكوى" },
+                    { en: "Actions", ar: "الإجراءات" }
+                ]
+            };
+
+            document.querySelector("h1").innerText = elements.title[lang];
+            document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${elements.addComplaint[lang]}`;
+            document.querySelector(".sidebar h2").innerText = elements.menu[lang];
+            document.querySelectorAll(".sidebar ul li")[0].innerText = elements.dashboard[lang];
+            document.querySelectorAll(".sidebar ul li")[1].innerText = elements.complaints[lang];
+            document.querySelectorAll(".sidebar ul li")[2].innerText = elements.reports[lang];
+            document.querySelectorAll(".sidebar ul li")[3].innerText = elements.settings[lang];
+            document.querySelector("label[for='language-select']").innerText = elements.languageLabel[lang];
+            
+            document.querySelectorAll("th").forEach((th, index) => {
+                if (elements.tableHeaders[index]) {
+                    th.innerText = elements.tableHeaders[index][lang];
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="sidebar">
@@ -108,7 +148,7 @@
         </ul>
         <div class="language-switch">
             <label for="language-select">Language:</label>
-            <select id="language-select">
+            <select id="language-select" onchange="changeLanguage()">
                 <option value="en">English</option>
                 <option value="ar">العربية</option>
             </select>
