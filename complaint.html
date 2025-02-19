@@ -80,12 +80,17 @@
 
         .card {
             background-color: blue;
-            padding: 20px;
+            padding: 50px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             color: white;
             text-align: center;
             font-size: 20px;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            background-color: darkblue;
         }
     </style>
 </head>
@@ -108,15 +113,15 @@
     </div>
     <div class="content">
         <div class="cards">
-            <div class="card" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div>
-            <div class="card" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div>
-            <div class="card" data-en="DRAFT" data-ar="مسودة">DRAFT</div>
-            <div class="card" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div>
-            <div class="card" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div>
-            <div class="card" data-en="DRAFT" data-ar="مسودة">DRAFT</div>
-            <div class="card" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div>
-            <div class="card" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div>
-            <div class="card" data-en="DRAFT" data-ar="مسودة">DRAFT</div>
+            <div class="card" data-en="Customer Complaints" data-ar="شكاوي العملاء" onclick="navigate('complaints.html')">شكاوي العملاء</div>
+            <div class="card" data-en="HR" data-ar="الموارد البشرية" onclick="navigate('hr.html')">الموارد البشرية</div>
+            <div class="card" data-en="KPI" data-ar="تقييمات الأداء" onclick="navigate('kpi.html')">KPI</div>
+            <div class="card" data-en="Operations" data-ar="التشغيل" onclick="navigate('operations.html')">التشغيل</div>
+            <div class="card" data-en="Warehouses" data-ar="المخازن" onclick="navigate('warehouses.html')">المخازن</div>
+            <div class="card" data-en="Reports" data-ar="التقارير" onclick="navigate('reports.html')">التقارير</div>
+            <div class="card" data-en="Empty" data-ar="" onclick="navigate('#')"> </div>
+            <div class="card" data-en="Empty" data-ar="" onclick="navigate('#')"> </div>
+            <div class="card" data-en="Empty" data-ar="" onclick="navigate('#')"> </div>
         </div>
     </div>
     <script>
@@ -133,6 +138,12 @@
             document.querySelectorAll(".sidebar ul li, .card").forEach(function(element) {
                 element.innerText = element.getAttribute("data-" + language);
             });
+        }
+
+        function navigate(page) {
+            if (page !== '#') {
+                window.location.href = page;
+            }
         }
     </script>
 </body>
