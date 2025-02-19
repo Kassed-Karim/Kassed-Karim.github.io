@@ -14,6 +14,7 @@
 
         body {
             display: flex;
+            flex-direction: row-reverse;
             height: 100vh;
             background-color: #f4f4f4;
         }
@@ -75,17 +76,30 @@
         .status.running { background-color: blue; }
         .status.complete { background-color: green; }
         .status.draft { background-color: gray; }
+
+        .language-switch {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
     </style>
 </head>
 <body>
+    <div class="language-switch">
+        <select id="language" onchange="changeLanguage()">
+            <option value="ar">العربية</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+    
     <div class="sidebar">
-        <h2>لوحة التحكم</h2>
+        <h2 id="dashboard-title">لوحة التحكم</h2>
         <ul>
-            <li>Dashboard</li>
-            <li>Campaigns</li>
-            <li>Lists</li>
-            <li>Subscribers</li>
-            <li>Settings</li>
+            <li data-en="Dashboard" data-ar="لوحة التحكم">لوحة التحكم</li>
+            <li data-en="Campaigns" data-ar="الحملات">الحملات</li>
+            <li data-en="Lists" data-ar="القوائم">القوائم</li>
+            <li data-en="Subscribers" data-ar="المشتركين">المشتركين</li>
+            <li data-en="Settings" data-ar="الإعدادات">الإعدادات</li>
         </ul>
     </div>
     <div class="content">
@@ -101,5 +115,18 @@
             <div class="card"><div class="status draft">DRAFT</div><h3>Last Campaign</h3><p>April 2, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
         </div>
     </div>
+
+    <script>
+        function changeLanguage() {
+            var language = document.getElementById("language").value;
+            document.documentElement.lang = language;
+            document.getElementById("dashboard-title").innerText = language === "en" ? "Dashboard" : "لوحة التحكم";
+            
+            var items = document.querySelectorAll(".sidebar ul li");
+            items.forEach(function(item) {
+                item.innerText = language === "en" ? item.getAttribute("data-en") : item.getAttribute("data-ar");
+            });
+        }
+    </script>
 </body>
 </html>
