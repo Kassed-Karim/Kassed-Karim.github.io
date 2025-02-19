@@ -107,7 +107,7 @@
 
             if (username === correctUsername && password === correctPassword) {
                 localStorage.setItem("loggedIn", "true");
-                window.location.href = "complaint.html";
+                window.location.href = "controlpage.html"; // تم تغيير الرابط هنا
             } else {
                 document.getElementById("error").innerText = "بيانات الدخول غير صحيحة!";
             }
