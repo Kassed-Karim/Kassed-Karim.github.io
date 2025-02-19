@@ -14,27 +14,27 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: url('https://raw.githubusercontent.com/Kassed-Karim/Kassed-Karim.github.io/main/new.jpg') no-repeat center center fixed;
-            background-size: contain;
-            background-position: center;
-            background-color: #FFDAB9; /* لون برتقالي فاتح */
+            background: url('https://i.imgur.com/YOUR_IMAGE.jpg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-color: #f8f9fa;
         }
 
         .login-container {
-            width: 320px;
+            width: 350px;
             padding: 20px;
             background-color: white;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
             text-align: center;
         }
 
         .login-container h2 {
             margin-bottom: 20px;
+            color: #333;
         }
 
         .input-group {
@@ -60,7 +60,7 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #28a745;
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
@@ -70,7 +70,7 @@
         }
 
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
 
         #error {
@@ -107,12 +107,12 @@
             var correctPassword = "1234";
 
             if (username === correctUsername && password === correctPassword) {
+                localStorage.setItem("loggedIn", "true");
                 window.location.href = "complaint.html";
             } else {
                 document.getElementById("error").innerText = "بيانات الدخول غير صحيحة!";
             }
         }
     </script>
-
 </body>
 </html>
