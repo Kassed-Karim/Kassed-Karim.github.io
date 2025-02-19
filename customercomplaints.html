@@ -176,19 +176,20 @@
             document.querySelector("h1").innerText = elements.title[lang];
             document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${elements.addComplaint[lang]}`;
             document.querySelector(".sidebar h2").innerText = elements.menu[lang];
-            document.querySelectorAll(".sidebar ul li")[0].innerText = elements.dashboard[lang];
-            document.querySelector(".sidebar ul li:nth-child(2)").innerHTML = `${elements.complaintsManagement[lang]} <ul class="dropdown-menu">
-                <li>${elements.openComplaints[lang]}</li>
-                <li>${elements.closedComplaints[lang]}</li>
-                <li>${elements.pendingComplaints[lang]}</li>
-                <li>${elements.urgentComplaints[lang]}</li>
-                <li>${elements.unresolvedComplaints[lang]}</li>
-            </ul>`;
-            document.querySelectorAll(".sidebar ul li")[2].innerText = elements.reports[lang];
-            document.querySelectorAll(".sidebar ul li")[3].innerText = elements.usersManagement[lang];
-            document.querySelectorAll(".sidebar ul li")[4].innerText = elements.notifications[lang];
-            document.querySelectorAll(".sidebar ul li")[5].innerText = elements.archive[lang];
-            document.querySelectorAll(".sidebar ul li")[6].innerText = elements.support[lang];
+            document.getElementById("dashboard").innerText = elements.dashboard[lang];
+            document.getElementById("complaintsManagement").innerHTML = `${elements.complaintsManagement[lang]}
+                <ul class="dropdown-menu">
+                    <li>${elements.openComplaints[lang]}</li>
+                    <li>${elements.closedComplaints[lang]}</li>
+                    <li>${elements.pendingComplaints[lang]}</li>
+                    <li>${elements.urgentComplaints[lang]}</li>
+                    <li>${elements.unresolvedComplaints[lang]}</li>
+                </ul>`;
+            document.getElementById("reports").innerText = elements.reports[lang];
+            document.getElementById("usersManagement").innerText = elements.usersManagement[lang];
+            document.getElementById("notifications").innerText = elements.notifications[lang];
+            document.getElementById("archive").innerText = elements.archive[lang];
+            document.getElementById("support").innerText = elements.support[lang];
             document.querySelector("label[for='language-select']").innerText = elements.languageLabel[lang];
             document.querySelectorAll("th").forEach((th, index) => {
                 if (elements.tableHeaders[index]) {
