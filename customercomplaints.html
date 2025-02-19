@@ -1,124 +1,112 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complaint Dashboard</title>
+    <title>Complaint Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
-
-        body {
-            display: flex;
-            height: 100vh;
-            background-color: #f8f9fa;
-        }
-
         .sidebar {
             width: 250px;
-            background-color: #343a40;
+            background: #2c3e50;
             color: white;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
             height: 100vh;
         }
-
+        .sidebar h2 {
+            text-align: center;
+        }
         .sidebar ul {
             list-style: none;
             padding: 0;
         }
-
         .sidebar ul li {
-            padding: 10px;
-            margin: 10px 0;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar ul li:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-        }
-
-        .top-bar {
-            width: calc(100% - 250px);
-            background-color: white;
             padding: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .sidebar ul li:hover {
+            background: #34495e;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background: #ecf0f1;
+        }
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
         }
-
-        .content {
-            flex: 1;
-            padding: 20px;
-            width: calc(100% - 250px);
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-
-        .card {
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
+        .add-complaint {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
             cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
         }
-
-        .card-blue { background-color: #007bff; color: white; }
-        .card-red { background-color: #dc3545; color: white; }
-        .card-yellow { background-color: #ffc107; color: black; }
-        .card-green { background-color: #28a745; color: white; }
+        .add-complaint:hover {
+            background: #2ecc71;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #34495e;
+            color: white;
+        }
+        .alert {
+            color: red;
+            font-weight: bold;
+        }
+        .view, .edit {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .view {
+            color: #2980b9;
+        }
+        .edit {
+            color: #f39c12;
+        }
     </style>
-    <script>
-        function changeLanguage(lang) {
-            document.documentElement.lang = lang;
-            localStorage.setItem('selectedLanguage', lang);
-            location.reload();
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            let savedLang = localStorage.getItem("selectedLanguage") || "ar";
-            document.documentElement.lang = savedLang;
-        });
-    </script>
 </head>
 <body>
     <div class="sidebar">
-        <h2>Complaint Drish</h2>
+        <h2>Complaint System</h2>
         <ul>
-            <li>Dashboard</li>
-            <li>Master</li>
-            <li>Complaints</li>
-            <li>Customers</li>
-            <li>Products</li>
+            <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+            <li><i class="fas fa-list"></i> Complaints</li>
+            <li><i class="fas fa-user"></i> Customers</li>
+            <li><i class="fas fa-cog"></i> Settings</li>
         </ul>
     </div>
     <div class="main-content">
-        <div class="top-bar">
-            <h2>Dashboard</h2>
-            <input type="text" placeholder="Search Complaints">
-            <select onchange="changeLanguage(this.value)">
-                <option value="ar">العربية</option>
-                <option value="en">English</option>
-            </select>
-        </div>
-        <div class="content">
-            <h3>Pending Complaints</h3>
-            <table border="1" width="100%">
+        <header>
+            <h1>Pending Complaints</h1>
+            <button class="add-complaint"><i class="fas fa-plus"></i> Add Complaint</button>
+        </header>
+        <table>
+            <thead>
                 <tr>
                     <th>#</th>
                     <th>Subject</th>
@@ -126,31 +114,36 @@
                     <th>Complaint Type</th>
                     <th>Product Serial No.</th>
                     <th>Opened Since</th>
+                    <th>Actions</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
                     <td>1</td>
-                    <td>Battery Dead Problem</td>
-                    <td>Reached Home</td>
-                    <td>warranty</td>
-                    <td>1</td>
-                    <td>1 month</td>
+                    <td>Battery Issue</td>
+                    <td>Assigned</td>
+                    <td>Warranty</td>
+                    <td>12345</td>
+                    <td class="alert">1 month</td>
+                    <td>
+                        <button class="view"><i class="fas fa-eye"></i></button>
+                        <button class="edit"><i class="fas fa-edit"></i></button>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>Problem</td>
-                    <td>-</td>
-                    <td>non-warranty</td>
-                    <td>124</td>
-                    <td>1 month</td>
+                    <td>Screen Problem</td>
+                    <td>Unassigned</td>
+                    <td>Non-Warranty</td>
+                    <td>67890</td>
+                    <td class="alert">2 weeks</td>
+                    <td>
+                        <button class="view"><i class="fas fa-eye"></i></button>
+                        <button class="edit"><i class="fas fa-edit"></i></button>
+                    </td>
                 </tr>
-            </table>
-            <div class="cards">
-                <div class="card card-blue">CREATED 3</div>
-                <div class="card card-red">UNASSIGNED 0</div>
-                <div class="card card-yellow">OPEN 3</div>
-                <div class="card card-green">SOLVED 0</div>
-            </div>
-        </div>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>
