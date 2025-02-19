@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم</title>
+    <title>Complaint Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -14,37 +14,18 @@
 
         body {
             display: flex;
-            flex-direction: column;
             height: 100vh;
-            background-color: orange;
-        }
-
-        .top-bar {
-            width: 100%;
-            background-color: #007bff;
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .main-container {
-            display: flex;
-            flex-direction: row;
-            flex: 1;
+            background-color: #f8f9fa;
         }
 
         .sidebar {
             width: 250px;
-            background-color: #007bff;
+            background-color: #343a40;
             color: white;
             padding: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            position: relative;
+            height: 100vh;
         }
 
         .sidebar ul {
@@ -55,79 +36,105 @@
         .sidebar ul li {
             padding: 10px;
             margin: 10px 0;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
         }
 
         .sidebar ul li:hover {
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        .top-bar {
+            width: calc(100% - 250px);
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
         }
 
         .content {
             flex: 1;
             padding: 20px;
+            width: calc(100% - 250px);
         }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
 
         .card {
-            background-color: white;
-            padding: 40px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            color: black;
             text-align: center;
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        .card:hover {
-            background-color: lightgray;
-        }
+        .card-blue { background-color: #007bff; color: white; }
+        .card-red { background-color: #dc3545; color: white; }
+        .card-yellow { background-color: #ffc107; color: black; }
+        .card-green { background-color: #28a745; color: white; }
     </style>
 </head>
 <body>
-    <div class="top-bar">لوحة التحكم</div>
-    <div class="main-container">
-        <div class="sidebar">
-            <ul>
-                <li>الرئيسية</li>
-                <li>لوحة التحكم</li>
-                <li>الإشعارات</li>
-                <li>الحسابات</li>
-                <li>الأمان</li>
-                <li>الدعم</li>
-                <li>التواصل</li>
-                <li>الملف الشخصي</li>
-                <li>الإعدادات</li>
-            </ul>
+    <div class="sidebar">
+        <h2>Complaint Drish</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Master</li>
+            <li>Complaints</li>
+            <li>Customers</li>
+            <li>Products</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="top-bar">
+            <h2>Dashboard</h2>
+            <input type="text" placeholder="Search Complaints">
         </div>
         <div class="content">
+            <h3>Pending Complaints</h3>
+            <table border="1" width="100%">
+                <tr>
+                    <th>#</th>
+                    <th>Subject</th>
+                    <th>Engineer Status</th>
+                    <th>Complaint Type</th>
+                    <th>Product Serial No.</th>
+                    <th>Opened Since</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Battery Dead Problem</td>
+                    <td>Reached Home</td>
+                    <td>warranty</td>
+                    <td>1</td>
+                    <td>1 month</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Problem</td>
+                    <td>-</td>
+                    <td>non-warranty</td>
+                    <td>124</td>
+                    <td>1 month</td>
+                </tr>
+            </table>
             <div class="cards">
-                <div class="card" onclick="navigate('https://kassed-karim.github.io/customercomplaints.html')">شكاوي العملاء</div>
-                <div class="card" onclick="navigate('hr.html')">الموارد البشرية</div>
-                <div class="card" onclick="navigate('kpi.html')">KPI</div>
-                <div class="card" onclick="navigate('operations.html')">التشغيل</div>
-                <div class="card" onclick="navigate('warehouses.html')">المخازن</div>
-                <div class="card" onclick="navigate('reports.html')">التقارير</div>
-                <div class="card" onclick="navigate('projects.html')">المشاريع</div>
-                <div class="card"></div>
-                <div class="card"></div>
+                <div class="card card-blue">CREATED 3</div>
+                <div class="card card-red">UNASSIGNED 0</div>
+                <div class="card card-yellow">OPEN 3</div>
+                <div class="card card-green">SOLVED 0</div>
             </div>
         </div>
     </div>
-    <script>
-        function navigate(page) {
-            if (page !== '#') {
-                window.location.href = page;
-            }
-        }
-    </script>
 </body>
 </html>
