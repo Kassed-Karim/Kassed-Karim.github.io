@@ -31,6 +31,7 @@
         .sidebar ul {
             list-style: none;
             padding: 0;
+            flex-grow: 1;
         }
         .sidebar ul li {
             padding: 15px;
@@ -46,7 +47,7 @@
             background: #0056b3;
             cursor: pointer;
             border-radius: 5px;
-            margin-top: -5px;
+            margin-bottom: 10px;
             color: black;
             font-weight: bold;
         }
@@ -97,6 +98,22 @@
     </style>
 </head>
 <body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Complaints</li>
+            <li>Reports</li>
+            <li>Settings</li>
+        </ul>
+        <div class="language-switch">
+            <label for="language-select">Language:</label>
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
+    </div>
     <div class="main-content">
         <header>
             <h1>Pending Complaints</h1>
