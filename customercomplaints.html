@@ -95,77 +95,35 @@
             color: white;
         }
     </style>
-    <script>
-        function changeLanguage() {
-            let lang = document.getElementById("language").value;
-            let elements = {
-                "pending": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
-                "add": { en: "Add Complaint", ar: "إضافة شكوى" },
-                "dashboard": { en: "Dashboard", ar: "لوحة التحكم" },
-                "complaints": { en: "Complaints", ar: "الشكاوى" },
-                "customers": { en: "Customers", ar: "العملاء" },
-                "settings": { en: "Settings", ar: "الإعدادات" },
-                "system": { en: "Complaint System", ar: "نظام الشكاوى" },
-                "subject": { en: "Subject", ar: "الموضوع" },
-                "engineer": { en: "Engineer Status", ar: "حالة المهندس" },
-                "type": { en: "Complaint Type", ar: "نوع الشكوى" },
-                "serial": { en: "Product Serial No.", ar: "الرقم التسلسلي للمنتج" },
-                "opened": { en: "Opened Since", ar: "تم الفتح منذ" },
-                "actions": { en: "Actions", ar: "الإجراءات" }
-            };
-            
-            document.querySelectorAll("[data-key]").forEach(el => {
-                let key = el.getAttribute("data-key");
-                if (elements[key]) {
-                    el.innerText = elements[key][lang];
-                }
-            });
-        }
-    </script>
 </head>
 <body>
-    <div class="sidebar">
-        <div>
-            <h2 data-key="system">Complaint System</h2>
-            <ul>
-                <li data-key="dashboard">Dashboard</li>
-                <li data-key="complaints">Complaints</li>
-                <li data-key="customers">Customers</li>
-                <li data-key="settings">Settings</li>
-            </ul>
-        </div>
-        <div class="language-switch">
-            <select id="language" onchange="changeLanguage()">
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-            </select>
-        </div>
-    </div>
     <div class="main-content">
         <header>
-            <h1 data-key="pending">Pending Complaints</h1>
-            <button class="add-complaint" data-key="add"><i class="fas fa-plus"></i> Add Complaint</button>
+            <h1>Pending Complaints</h1>
+            <button class="add-complaint"><i class="fas fa-plus"></i> Add Complaint</button>
         </header>
         <table>
             <thead>
                 <tr>
                     <th>#</th>
-                    <th data-key="subject">Subject</th>
-                    <th data-key="engineer">Engineer Status</th>
-                    <th data-key="type">Complaint Type</th>
-                    <th data-key="serial">Product Serial No.</th>
-                    <th data-key="opened">Opened Since</th>
-                    <th data-key="actions">Actions</th>
+                    <th>User</th>
+                    <th>Customer Name</th>
+                    <th>Contact Number</th>
+                    <th>Complaint Type</th>
+                    <th>Assigned To</th>
+                    <th>Complaint Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
                     <td>Battery Issue</td>
-                    <td>Assigned</td>
+                    <td>John Doe</td>
+                    <td>+123456789</td>
                     <td>Warranty</td>
-                    <td>12345</td>
-                    <td>1 month</td>
+                    <td>Engineer A</td>
+                    <td>Open</td>
                     <td>
                         <button class="view"><i class="fas fa-eye"></i></button>
                         <button class="edit"><i class="fas fa-edit"></i></button>
