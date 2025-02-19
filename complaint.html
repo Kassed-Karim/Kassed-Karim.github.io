@@ -120,8 +120,15 @@
     </div>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var savedLanguage = localStorage.getItem("language") || "ar";
+            document.getElementById("language").value = savedLanguage;
+            changeLanguage();
+        });
+
         function changeLanguage() {
             var language = document.getElementById("language").value;
+            localStorage.setItem("language", language);
             document.documentElement.lang = language;
             document.getElementById("dashboard-title").innerText = language === "en" ? "Dashboard" : "لوحة التحكم";
             
