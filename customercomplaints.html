@@ -22,6 +22,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            font-size: 14px; /* تقليل حجم الخط للقائمة */
         }
         .sidebar h2 {
             text-align: center;
@@ -32,11 +33,31 @@
             flex-grow: 1;
         }
         .sidebar ul li {
-            padding: 15px;
+            padding: 10px 15px;
             cursor: pointer;
             transition: 0.3s;
+            position: relative;
         }
         .sidebar ul li:hover {
+            background: #0056b3;
+        }
+        .sidebar ul li .dropdown-menu {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: #007BFF;
+            padding: 0;
+            list-style: none;
+            width: 200px;
+        }
+        .sidebar ul li:hover .dropdown-menu {
+            display: block;
+        }
+        .sidebar ul li .dropdown-menu li {
+            padding: 10px 15px;
+        }
+        .sidebar ul li .dropdown-menu li:hover {
             background: #0056b3;
         }
         .language-switch {
@@ -124,11 +145,19 @@
             const elements = {
                 "title": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
                 "addComplaint": { en: "Add Complaint", ar: "إضافة شكوى" },
-                "menu": { en: "Menu", ar: "القائمة" },
+                "menu": { en: "Complaints", ar: "الشكاوى" },
                 "dashboard": { en: "Dashboard", ar: "لوحة التحكم" },
-                "complaints": { en: "Complaints", ar: "الشكاوى" },
+                "complaintsManagement": { en: "Complaints Management", ar: "إدارة الشكاوى" },
+                "openComplaints": { en: "Open Complaints", ar: "الشكاوى المفتوحة" },
+                "closedComplaints": { en: "Closed Complaints", ar: "الشكاوى المغلقة" },
+                "pendingComplaints": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
+                "urgentComplaints": { en: "Urgent Complaints", ar: "الشكاوى العاجلة" },
+                "unresolvedComplaints": { en: "Unresolved Complaints", ar: "الشكاوى غير المحلولة" },
                 "reports": { en: "Reports", ar: "التقارير" },
-                "settings": { en: "Settings", ar: "الإعدادات" },
+                "usersManagement": { en: "Users Management", ar: "إدارة المستخدمين" },
+                "notifications": { en: "Notifications", ar: "الإشعارات" },
+                "archive": { en: "Archive", ar: "الأرشيف" },
+                "support": { en: "Support", ar: "الدعم" },
                 "languageLabel": { en: "Language:", ar: "اللغة:" },
                 "tableHeaders": [
                     { en: "#", ar: "#" },
@@ -147,9 +176,18 @@
             document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${elements.addComplaint[lang]}`;
             document.querySelector(".sidebar h2").innerText = elements.menu[lang];
             document.querySelectorAll(".sidebar ul li")[0].innerText = elements.dashboard[lang];
-            document.querySelectorAll(".sidebar ul li")[1].innerText = elements.complaints[lang];
+            document.querySelector(".sidebar ul li:nth-child(2)").innerHTML = `${elements.complaintsManagement[lang]} <ul class="dropdown-menu">
+                <li>${elements.openComplaints[lang]}</li>
+                <li>${elements.closedComplaints[lang]}</li>
+                <li>${elements.pendingComplaints[lang]}</li>
+                <li>${elements.urgentComplaints[lang]}</li>
+                <li>${elements.unresolvedComplaints[lang]}</li>
+            </ul>`;
             document.querySelectorAll(".sidebar ul li")[2].innerText = elements.reports[lang];
-            document.querySelectorAll(".sidebar ul li")[3].innerText = elements.settings[lang];
+            document.querySelectorAll(".sidebar ul li")[3].innerText = elements.usersManagement[lang];
+            document.querySelectorAll(".sidebar ul li")[4].innerText = elements.notifications[lang];
+            document.querySelectorAll(".sidebar ul li")[5].innerText = elements.archive[lang];
+            document.querySelectorAll(".sidebar ul li")[6].innerText = elements.support[lang];
             document.querySelector("label[for='language-select']").innerText = elements.languageLabel[lang];
             document.querySelectorAll("th").forEach((th, index) => {
                 if (elements.tableHeaders[index]) {
@@ -161,12 +199,23 @@
 </head>
 <body>
     <div class="sidebar">
-        <h2>Menu</h2>
+        <h2>Complaints</h2>
         <ul>
             <li>Dashboard</li>
-            <li>Complaints</li>
+            <li>Complaints Management
+                <ul class="dropdown-menu">
+                    <li>Open Complaints</li>
+                    <li>Closed Complaints</li>
+                    <li>Pending Complaints</li>
+                    <li>Urgent Complaints</li>
+                    <li>Unresolved Complaints</li>
+                </ul>
+            </li>
             <li>Reports</li>
-            <li>Settings</li>
+            <li>Users Management</li>
+            <li>Notifications</li>
+            <li>Archive</li>
+            <li>Support</li>
         </ul>
         <div class="language-switch">
             <label for="language-select">Language:</label>
