@@ -102,10 +102,10 @@
 <body>
     <div class="sidebar">
         <div>
-            <h2 id="dashboard-title">لوحة التحكم</h2>
+            <h2 id="dashboard-title">Control Panel</h2>
             <ul>
                 <li data-en="Home" data-ar="الرئيسية">الرئيسية</li>
-                <li data-en="Dashboard" data-ar="لوحة التحكم">لوحة التحكم</li>
+                <li data-en="Control Panel" data-ar="لوحة التحكم">Control Panel</li>
                 <li data-en="Notifications" data-ar="الإشعارات">الإشعارات</li>
                 <li data-en="Accounts" data-ar="الحسابات">الحسابات</li>
                 <li data-en="Security" data-ar="الأمان">الأمان</li>
@@ -142,7 +142,7 @@
         function setLanguage(language) {
             localStorage.setItem("language", language);
             document.documentElement.lang = language;
-            document.getElementById("dashboard-title").innerText = language === "en" ? "Dashboard" : "لوحة التحكم";
+            document.getElementById("dashboard-title").innerText = language === "en" ? "Control Panel" : "لوحة التحكم";
             
             document.querySelectorAll(".sidebar ul li, .card").forEach(function(element) {
                 element.innerText = element.getAttribute("data-" + language);
