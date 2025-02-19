@@ -106,6 +106,14 @@
         .actions i:hover {
             color: #007BFF;
         }
+        .complaint-id a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .complaint-id a:hover {
+            color: #0056b3;
+        }
     </style>
     <script>
         function changeLanguage() {
@@ -187,7 +195,7 @@
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td>1001</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1001">1001</a></td>
                     <td>Battery Issue</td>
                     <td>John Doe</td>
                     <td>+123456789</td>
@@ -201,7 +209,7 @@
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>1002</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1002">1002</a></td>
                     <td>Screen Issue</td>
                     <td>Jane Smith</td>
                     <td>+987654321</td>
@@ -215,7 +223,7 @@
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td>1003</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1003">1003</a></td>
                     <td>Software Issue</td>
                     <td>Alice Brown</td>
                     <td>+1122334455</td>
