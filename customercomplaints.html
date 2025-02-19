@@ -141,8 +141,13 @@
         }
     </style>
     <script>
-        function changeLanguage() {
-            const lang = document.getElementById("language-select").value;
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedLanguage = localStorage.getItem("language") || "en";
+            document.getElementById("language-select").value = savedLanguage;
+            changeLanguage(savedLanguage);
+        });
+
+        function changeLanguage(lang) {
             const elements = {
                 "title": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
                 "addComplaint": { en: "Add Complaint", ar: "إضافة شكوى" },
@@ -196,7 +201,13 @@
                     th.innerText = elements.tableHeaders[index][lang];
                 }
             });
+
+            localStorage.setItem("language", lang);
         }
+
+        document.getElementById("language-select").addEventListener("change", (event) => {
+            changeLanguage(event.target.value);
+        });
     </script>
 </head>
 <body>
@@ -221,7 +232,7 @@
         </ul>
         <div class="language-switch">
             <label for="language-select">Language:</label>
-            <select id="language-select" onchange="changeLanguage()">
+            <select id="language-select">
                 <option value="en">English</option>
                 <option value="ar">العربية</option>
             </select>
