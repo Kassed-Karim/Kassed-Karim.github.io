@@ -46,13 +46,14 @@
             background: #0056b3;
             cursor: pointer;
             border-radius: 5px;
-            margin-top: 10px;
+            margin-top: -10px;
         }
         .language-switch select {
             background: transparent;
-            color: white;
+            color: black;
             border: none;
             font-size: 16px;
+            font-weight: bold;
         }
         .main-content {
             flex: 1;
@@ -92,56 +93,6 @@
             color: white;
         }
     </style>
-    <script>
-        function changeLanguage() {
-            const lang = document.getElementById("language").value;
-            const translations = {
-                en: {
-                    title: "Complaint System",
-                    dashboard: "Dashboard",
-                    complaints: "Complaints",
-                    customers: "Customers",
-                    settings: "Settings",
-                    pendingComplaints: "Pending Complaints",
-                    addComplaint: "Add Complaint",
-                    subject: "Subject",
-                    status: "Engineer Status",
-                    type: "Complaint Type",
-                    serial: "Product Serial No.",
-                    opened: "Opened Since",
-                    actions: "Actions"
-                },
-                ar: {
-                    title: "نظام الشكاوى",
-                    dashboard: "لوحة التحكم",
-                    complaints: "الشكاوى",
-                    customers: "العملاء",
-                    settings: "الإعدادات",
-                    pendingComplaints: "الشكاوى المعلقة",
-                    addComplaint: "إضافة شكوى",
-                    subject: "الموضوع",
-                    status: "حالة المهندس",
-                    type: "نوع الشكوى",
-                    serial: "الرقم التسلسلي للمنتج",
-                    opened: "مفتوح منذ",
-                    actions: "الإجراءات"
-                }
-            };
-            document.querySelector(".sidebar h2").textContent = translations[lang].title;
-            document.querySelectorAll(".sidebar ul li")[0].textContent = translations[lang].dashboard;
-            document.querySelectorAll(".sidebar ul li")[1].textContent = translations[lang].complaints;
-            document.querySelectorAll(".sidebar ul li")[2].textContent = translations[lang].customers;
-            document.querySelectorAll(".sidebar ul li")[3].textContent = translations[lang].settings;
-            document.querySelector("header h1").textContent = translations[lang].pendingComplaints;
-            document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${translations[lang].addComplaint}`;
-            document.querySelectorAll("th")[1].textContent = translations[lang].subject;
-            document.querySelectorAll("th")[2].textContent = translations[lang].status;
-            document.querySelectorAll("th")[3].textContent = translations[lang].type;
-            document.querySelectorAll("th")[4].textContent = translations[lang].serial;
-            document.querySelectorAll("th")[5].textContent = translations[lang].opened;
-            document.querySelectorAll("th")[6].textContent = translations[lang].actions;
-        }
-    </script>
 </head>
 <body>
     <div class="sidebar">
