@@ -110,12 +110,12 @@
     </div>
     <div class="content">
         <div class="cards">
-            <div class="card"><div class="status running">RUNNING</div><h3>Sed ut perspiciatis</h3><p>March 27, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status complete">COMPLETE</div><h3>Lorem ipsum dolor</h3><p>March 27, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status draft">DRAFT</div><h3>Accusantium dolor</h3><p>March 27, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status running">RUNNING</div><h3>New Campaign</h3><p>March 28, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status complete">COMPLETE</div><h3>Another Campaign</h3><p>March 29, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
-            <div class="card"><div class="status draft">DRAFT</div><h3>Sample Campaign</h3><p>March 30, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
+            <div class="card"><div class="status running" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div><h3>Sed ut perspiciatis</h3><p>March 27, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
+            <div class="card"><div class="status complete" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div><h3>Lorem ipsum dolor</h3><p>March 27, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
+            <div class="card"><div class="status draft" data-en="DRAFT" data-ar="مسودة">DRAFT</div><h3>Accusantium dolor</h3><p>March 27, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
+            <div class="card"><div class="status running" data-en="RUNNING" data-ar="قيد التشغيل">RUNNING</div><h3>New Campaign</h3><p>March 28, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
+            <div class="card"><div class="status complete" data-en="COMPLETE" data-ar="مكتمل">COMPLETE</div><h3>Another Campaign</h3><p>March 29, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
+            <div class="card"><div class="status draft" data-en="DRAFT" data-ar="مسودة">DRAFT</div><h3>Sample Campaign</h3><p>March 30, 2018 10:00 PM</p><p>Campaign subject can be two lines and placed here</p></div>
         </div>
     </div>
 
@@ -128,6 +128,11 @@
             var items = document.querySelectorAll(".sidebar ul li");
             items.forEach(function(item) {
                 item.innerText = language === "en" ? item.getAttribute("data-en") : item.getAttribute("data-ar");
+            });
+
+            var statuses = document.querySelectorAll(".status");
+            statuses.forEach(function(status) {
+                status.innerText = language === "en" ? status.getAttribute("data-en") : status.getAttribute("data-ar");
             });
         }
     </script>
