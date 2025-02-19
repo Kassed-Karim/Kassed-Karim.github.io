@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نموذج الشكوى</title>
+    <title>واجهة الشكاوى</title>
     <style>
         * {
             margin: 0;
@@ -13,19 +13,20 @@
         }
 
         body {
-            background-color: #f8f9fa;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-color: #f4f4f4;
         }
 
-        .complaint-container {
-            width: 400px;
-            background-color: white;
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
@@ -35,8 +36,8 @@
         }
 
         .input-group {
-            text-align: right;
             margin-bottom: 15px;
+            text-align: right;
         }
 
         label {
@@ -71,35 +72,26 @@
     </style>
 </head>
 <body>
-
-    <div class="complaint-container">
+    <div class="container">
         <h2>تقديم شكوى</h2>
         <div class="input-group">
             <label for="name">الاسم</label>
-            <input type="text" id="name" placeholder="أدخل اسمك">
+            <input type="text" id="name" placeholder="أدخل اسمك" required>
         </div>
         <div class="input-group">
-            <label for="phone">رقم الهاتف</label>
-            <input type="text" id="phone" placeholder="أدخل رقم هاتفك">
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required>
         </div>
         <div class="input-group">
             <label for="complaint">تفاصيل الشكوى</label>
-            <textarea id="complaint" rows="4" placeholder="أدخل تفاصيل الشكوى"></textarea>
+            <textarea id="complaint" rows="4" placeholder="اكتب تفاصيل الشكوى هنا" required></textarea>
         </div>
         <button onclick="submitComplaint()">إرسال الشكوى</button>
     </div>
 
     <script>
         function submitComplaint() {
-            var name = document.getElementById("name").value;
-            var phone = document.getElementById("phone").value;
-            var complaint = document.getElementById("complaint").value;
-
-            if (name && phone && complaint) {
-                alert("تم إرسال الشكوى بنجاح!");
-            } else {
-                alert("يرجى ملء جميع الحقول!");
-            }
+            alert("تم إرسال الشكوى بنجاح!");
         }
     </script>
 </body>
