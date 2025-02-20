@@ -66,3 +66,64 @@ function Login() {
 }
 
 export default Login;
+import React, { useState, useEffect } from 'react';
+import { Box, Typography, Grid, Card, CardContent } from '@mui/material';
+import axios from 'axios';
+
+function Dashboard() {
+  const [complaints, setComplaints] = useState([]);
+
+  useEffect(() => {
+    const fetchComplaints = async () => {
+      try {
+        const response = await axios.get('/api/complaints');
+        setComplaints(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchComplaints();
+  }, []);
+
+  return (
+    <Box sx={{ flexGrow: 1, p: 3 }}>
+      <Typography variant="h4" gutterBottom>لوحة التحكم</Typography>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6} md={3}>
+          <Card>
+            <CardContent>
+              <Typography variant="h5" component="h2">الشكاوى الجديدة</Typography>
+              <Typography variant="h3" component="h1">10</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Card>
+            <CardContent>
+              <Typography variant="h5" component="h2">الشكاوى قيد المراجعة</Typography>
+              <Typography variant="h3" component="h1">5</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Card>
+            <CardContent>
+              <Typography variant="h5" component="h2">الشكاوى التي تم حلها</Typography>
+              <Typography variant="h3" component="h1">20</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <Card>
+            <CardContent>
+              <Typography variant="h5" component="h2">إجمالي الشكاوى</Typography>
+              <Typography variant="h3" component="h1">{complaints.length}</Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+}
+
+export default Dashboard;
