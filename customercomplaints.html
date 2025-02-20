@@ -151,6 +151,7 @@
             const lang = selectedLang || document.getElementById("language-select").value;
             const elements = {
                 "title": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
+                "newComplaintsTitle": { en: "New Complaints", ar: "الشكاوى الجديدة" },
                 "addComplaint": { en: "Add Complaint", ar: "إضافة شكوى" },
                 "menu": { en: "Complaints", ar: "الشكاوى" },
                 "dashboard": { en: "Dashboard", ar: "لوحة التحكم" },
@@ -179,7 +180,8 @@
                 ]
             };
 
-            document.querySelector("h1").innerText = elements.title[lang];
+            document.querySelector("#pendingComplaintsTitle").innerText = elements.title[lang];
+            document.querySelector("#newComplaintsTitle").innerText = elements.newComplaintsTitle[lang];
             document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${elements.addComplaint[lang]}`;
             document.querySelector(".sidebar h2").innerText = elements.menu[lang];
             document.getElementById("dashboard").innerText = elements.dashboard[lang];
@@ -241,7 +243,7 @@
     </div>
     <div class="main-content">
         <header>
-            <h1>Pending Complaints</h1>
+            <h1 id="pendingComplaintsTitle">Pending Complaints</h1>
             <button class="add-complaint"><i class="fas fa-plus"></i> Add Complaint</button>
         </header>
         <table>
@@ -298,6 +300,69 @@
                     <td>Resolved</td>
                     <td class="actions">
                         <a href="complaint-details.html?id=1003"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <header>
+            <h1 id="newComplaintsTitle">New Complaints</h1>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Complaint ID</th>
+                    <th>User</th>
+                    <th>Customer Name</th>
+                    <th>Contact Number</th>
+                    <th>Complaint Type</th>
+                    <th>Assigned To</th>
+                    <th>Complaint Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>4</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1004">1004</a></td>
+                    <td>Network Issue</td>
+                    <td>Michael Johnson</td>
+                    <td>+2233445566</td>
+                    <td>Technical Support</td>
+                    <td>Engineer D</td>
+                    <td>New</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=1004"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1005">1005</a></td>
+                    <td>Software Update</td>
+                    <td>Linda Green</td>
+                    <td>+6655443322</td>
+                    <td>Warranty</td>
+                    <td>Engineer E</td>
+                    <td>New</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=1005"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1006">1006</a></td>
+                    <td>Battery Replacement</td>
+                    <td>Chris Lee</td>
+                    <td>+7788990011</td>
+                    <td>Out of Warranty</td>
+                    <td>Engineer F</td>
+                    <td>New</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=1006"><i class="fas fa-edit"></i></a>
                         <i class="fas fa-external-link-alt"></i>
                     </td>
                 </tr>
