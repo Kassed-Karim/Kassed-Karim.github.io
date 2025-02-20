@@ -14,14 +14,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
         .container {
-            width: 50%;
+            width: 60%;
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         h1, p {
             text-align: center;
@@ -29,35 +29,54 @@
         form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
-        fieldset {
-            border: none;
-            padding: 10px 0;
+        .form-section {
+            margin-bottom: 20px;
         }
-        legend {
+        .form-section h2 {
             font-size: 18px;
-            font-weight: bold;
+            margin-bottom: 10px;
         }
         .form-group {
             display: flex;
-            flex-direction: column;
-            gap: 5px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
-        .form-group input, textarea {
-            width: 100%;
+        .form-group label {
+            font-weight: bold;
+            flex: 1 1 100%;
+        }
+        .form-group input, .form-group textarea {
+            flex: 1;
+            min-width: calc(50% - 10px);
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .form-group textarea {
+            min-height: 80px;
+            width: 100%;
+        }
+        .file-upload {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .file-upload:hover {
+            background: #f0f0f0;
+        }
         button {
-            padding: 10px;
+            padding: 12px;
             background-color: #28a745;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            width: 100%;
         }
         button:hover {
             background-color: #218838;
@@ -70,8 +89,8 @@
         <p>We're sorry to hear about your experience. Please provide us with details of your complaint so that we can address it promptly.</p>
         
         <form>
-            <fieldset>
-                <legend>Your Information</legend>
+            <div class="form-section">
+                <h2>Your Information</h2>
                 <div class="form-group">
                     <label>Full Name</label>
                     <input type="text" placeholder="First Name">
@@ -93,14 +112,14 @@
                     <label>Order/Invoice Number</label>
                     <input type="text">
                 </div>
-                <div class="form-group">
+                <div class="form-group file-upload">
                     <label>Proof of Purchase (If Applicable)</label>
                     <input type="file">
                 </div>
-            </fieldset>
+            </div>
             
-            <fieldset>
-                <legend>Complaint Details</legend>
+            <div class="form-section">
+                <h2>Complaint Details</h2>
                 <div class="form-group">
                     <label>What is the nature of your complaint?</label>
                     <textarea></textarea>
@@ -113,15 +132,15 @@
                     <label>What resolution are you seeking?</label>
                     <textarea></textarea>
                 </div>
-            </fieldset>
+            </div>
             
-            <fieldset>
-                <legend>Supporting Documents (Optional)</legend>
-                <div class="form-group">
+            <div class="form-section">
+                <h2>Supporting Documents (Optional)</h2>
+                <div class="form-group file-upload">
                     <label>Upload File</label>
                     <input type="file">
                 </div>
-            </fieldset>
+            </div>
             
             <button type="submit">Submit</button>
         </form>
