@@ -6,6 +6,99 @@
     <title>Dashboard UI</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #34495e;
+            cursor: pointer;
+        }
+        .sidebar ul li:hover {
+            background: #1abc9c;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-weight: bold;
+        }
+        .card span {
+            display: block;
+            font-size: 24px;
+            margin-top: 5px;
+        }
+        .report table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .report th, .report td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .report th {
+            background: #3498db;
+            color: white;
+        }
+        .detail {
+            background: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .delete {
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="sidebar">
