@@ -30,11 +30,13 @@
             right: 0;
             box-shadow: -2px 0 5px rgba(0,0,0,0.1);
             border-radius: 10px 0 0 10px;
+            animation: slideInRight 0.5s ease-in-out;
         }
         .sidebar h2 {
             text-align: center;
             font-size: 20px;
             margin-bottom: 20px;
+            animation: fadeInDown 0.5s ease-in-out;
         }
         .sidebar ul {
             list-style: none;
@@ -48,6 +50,7 @@
             position: relative;
             border-radius: 5px;
             margin-bottom: 10px;
+            animation: fadeInLeft 0.5s ease-in-out;
         }
         .sidebar ul li:hover {
             background: #0056b3;
@@ -84,6 +87,7 @@
             margin-bottom: 10px;
             color: white;
             font-weight: bold;
+            animation: fadeInUp 0.5s ease-in-out;
         }
         .language-switch select {
             background: transparent;
@@ -130,6 +134,7 @@
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             margin-bottom: 20px;
+            animation: fadeInUp 1s ease-in-out;
         }
         th, td {
             border: 1px solid #ddd;
@@ -184,6 +189,36 @@
             from {
                 opacity: 0;
                 transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -414,25 +449,4 @@
                 <tr>
                     <td>3</td>
                     <td class="complaint-id"><a href="complaint-details.html?id=2003">2003</a></td>
-                    <td>Battery Replacement</td>
-                    <td>Chris Lee</td>
-                    <td>+7788990011</td>
-                    <td>Out of Warranty</td>
-                    <td>Engineer F</td>
-                    <td>New</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=2003"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <header>
-            <h1 id="unassignedComplaintsTitle">Unassigned Complaints</h1>
-        </header>
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>
+                    <td>Battery
