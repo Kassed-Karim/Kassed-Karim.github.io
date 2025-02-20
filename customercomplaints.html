@@ -201,6 +201,18 @@
             border-radius: 5px;
             width: 200px;
         }
+        .search-box button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .search-box button:hover {
+            background: #0056b3;
+        }
         @keyframes slideIn {
             from {
                 opacity: 0;
@@ -276,14 +288,14 @@
             });
 
             // Search functionality
-            $('#search-complaint-id').on('keyup', function() {
-                table.columns(1).search(this.value).draw();
-            });
-            $('#search-customer-number').on('keyup', function() {
-                table.columns(4).search(this.value).draw();
-            });
-            $('#search-complaint-status').on('change', function() {
-                table.columns(7).search(this.value).draw();
+            document.getElementById('search-go').addEventListener('click', () => {
+                const complaintId = document.getElementById('search-complaint-id').value;
+                const customerNumber = document.getElementById('search-customer-number').value;
+                const complaintStatus = document.getElementById('search-complaint-status').value;
+
+                table.columns(1).search(complaintId).draw();
+                table.columns(4).search(customerNumber).draw();
+                table.columns(7).search(complaintStatus).draw();
             });
         });
 
@@ -388,6 +400,9 @@
                     <option value="Pending">Pending</option>
                 </select>
             </div>
+            <div class="search-box">
+                <button id="search-go">Go</button>
+            </div>
         </div>
         <table class="display">
             <thead>
@@ -407,8 +422,8 @@
                 <tr>
                     <td>1</td>
                     <td class="complaint-id"><a href="complaint-details.html?id=1001">1001</a></td>
-                    <td>Battery Issue</td>
                     <td>John Doe</td>
+                    <td>Battery Issue</td>
                     <td>+123456789</td>
                     <td>Warranty</td>
                     <td>Engineer A</td>
@@ -421,8 +436,8 @@
                 <tr>
                     <td>2</td>
                     <td class="complaint-id"><a href="complaint-details.html?id=1002">1002</a></td>
-                    <td>Screen Issue</td>
                     <td>Jane Smith</td>
+                    <td>Screen Issue</td>
                     <td>+987654321</td>
                     <td>Out of Warranty</td>
                     <td>Engineer B</td>
@@ -435,17 +450,4 @@
                 <tr>
                     <td>3</td>
                     <td class="complaint-id"><a href="complaint-details.html?id=1003">1003</a></td>
-                    <td>Software Issue</td>
-                    <td>Alice Brown</td>
-                    <td>+1122334455</td>
-                    <td>Technical Support</td>
-                    <td>Engineer C</td>
-                    <td>Resolved</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=1003"><i class="fas fa-edit"></i></a>
-                        <a href="complaint-details.html?id=1003"><i class="fas fa-external-link-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                   
+                    <td>Alice Brown</
