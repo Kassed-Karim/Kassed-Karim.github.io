@@ -9,7 +9,6 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: row-reverse; /* تأكد من أن الاتجاه هو row-reverse */
             margin: 0;
             padding: 0;
             background-color: orange; /* تغيير لون خلفية الصفحة إلى برتقالي */
@@ -24,6 +23,9 @@
             flex-direction: column;
             justify-content: space-between;
             font-size: 14px; /* تقليل حجم الخط للقائمة */
+            position: fixed; /* تثبيت الشريط الجانبي */
+            top: 0;
+            right: 0;
         }
         .sidebar h2 {
             text-align: center;
@@ -82,6 +84,7 @@
             flex: 1;
             padding: 20px;
             background: #ecf0f1;
+            margin-right: 270px; /* إضافة هامش لتجنب التداخل مع الشريط الجانبي */
         }
         header {
             display: flex;
@@ -429,8 +432,4 @@
                     <td>Software Bug</td>
                     <td>Emma Taylor</td>
                     <td>+1122446688</td>
-                    <td>Technical Support</td>
-                    <td>Unassigned</td>
-                    <td>Open</td>
-                    <td class="actions">
-                        <a
+                    <td>Technical Support
