@@ -60,12 +60,24 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out;
+        }
+        .sidebar.active {
+            transform: translateX(0);
         }
         .user-info {
             text-align: center;
             margin-bottom: 20px;
             font-size: 18px;
             font-weight: bold;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .sidebar.active .user-info {
+            opacity: 1;
+            transform: translateY(0);
         }
         .sidebar ul {
             list-style: none;
@@ -75,11 +87,12 @@
         .sidebar ul li {
             padding: 12px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
             text-align: center;
         }
         .sidebar ul li:hover {
             background-color: #00509e;
+            transform: scale(1.05);
         }
         .main-content {
             flex-grow: 1;
@@ -97,8 +110,13 @@
             border-radius: 10px;
             flex: 1;
             text-align: center;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
             color: white;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
         }
         .card span {
             display: block;
@@ -111,6 +129,11 @@
             border-collapse: collapse;
             margin-top: 20px;
             box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .report th, .report td {
             padding: 12px;
@@ -121,23 +144,23 @@
             background-color: #003366;
             color: white;
         }
-        .detail {
-            background-color: #003366;
-            color: white;
+        .detail, .delete {
             border: none;
             padding: 5px 10px;
             cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
         }
-        .delete {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
+        .detail:hover {
+            background-color: #004488;
+            transform: scale(1.1);
+        }
+        .delete:hover {
+            background-color: #c0392b;
+            transform: scale(1.1);
         }
     </style>
 </head>
-<body>
+<body onload="document.querySelector('.sidebar').classList.add('active');">
     <div class="sidebar">
         <div class="user-info" id="username">Liam Moore</div>
         <h2 data-translate="complaints">Complaints</h2>
@@ -168,29 +191,6 @@
             <div class="card">Total Menu <span>5</span></div>
             <div class="card">Total Submenu <span>10</span></div>
         </div>
-        <section class="report">
-            <h2 data-translate="reportData">Report Data</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Report Title</th>
-                        <th>Report Type</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Demo</td>
-                        <td>Corona Virus</td>
-                        <td>03 May 2022</td>
-                        <td><button class="detail">Detail</button> <button class="delete">Delete</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
     </div>
 </body>
 </html>
