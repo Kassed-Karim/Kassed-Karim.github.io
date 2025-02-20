@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f4f4f9;
+            background-color: orange;
             margin: 0;
             padding: 0;
             display: flex;
@@ -18,20 +18,17 @@
         }
         .container {
             width: 50%;
-            background: white;
+            background: blue;
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            color: white;
         }
         h1 {
             text-align: center;
             font-size: 26px;
             font-weight: 600;
-            color: #333;
-        }
-        p {
-            text-align: center;
-            color: #666;
+            color: white;
         }
         form {
             display: flex;
@@ -44,8 +41,8 @@
         .form-section h2 {
             font-size: 20px;
             margin-bottom: 15px;
-            color: #444;
-            border-bottom: 2px solid #ddd;
+            color: white;
+            border-bottom: 2px solid white;
             padding-bottom: 5px;
         }
         .form-group {
@@ -56,21 +53,24 @@
         .form-group label {
             font-weight: 500;
             flex: 1 1 100%;
+            color: white;
         }
         .form-group input, .form-group textarea {
             flex: 1;
             min-width: calc(50% - 10px);
             padding: 12px;
-            border: 1px solid #ccc;
+            border: 1px solid white;
             border-radius: 8px;
             font-size: 14px;
+            background: transparent;
+            color: white;
         }
         .form-group textarea {
             min-height: 100px;
             width: 100%;
         }
         .file-upload {
-            border: 2px dashed #ccc;
+            border: 2px dashed white;
             padding: 25px;
             text-align: center;
             border-radius: 8px;
@@ -78,12 +78,12 @@
             transition: background 0.3s;
         }
         .file-upload:hover {
-            background: #eef;
+            background: rgba(255, 255, 255, 0.2);
         }
         button {
             padding: 14px;
-            background-color: #007bff;
-            color: white;
+            background-color: white;
+            color: blue;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -91,14 +91,13 @@
             transition: background 0.3s;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #ddd;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Customer Complaint</h1>
-        <p>We're sorry to hear about your experience. Please provide us with details so we can address it promptly.</p>
         
         <form>
             <div class="form-section">
