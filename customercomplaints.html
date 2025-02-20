@@ -9,6 +9,7 @@
     <script>
         const translations = {
             en: {
+                complaints: "Complaints",
                 dashboard: "Dashboard",
                 accessAuthority: "Access Authority",
                 userData: "User Data",
@@ -31,6 +32,7 @@
                 delete: "Delete"
             },
             ar: {
+                complaints: "الشكاوى",
                 dashboard: "لوحة التحكم",
                 accessAuthority: "صلاحيات الوصول",
                 userData: "بيانات المستخدم",
@@ -55,6 +57,7 @@
         };
         
         function changeLanguage(lang) {
+            document.querySelector("#complaints").innerText = translations[lang].complaints;
             document.querySelector("#dashboard").innerText = translations[lang].dashboard;
             document.querySelector("#accessAuthority").innerText = translations[lang].accessAuthority;
             document.querySelector("#userData").innerText = translations[lang].userData;
@@ -65,30 +68,26 @@
             document.querySelector("#changePassword").innerText = translations[lang].changePassword;
             document.querySelector("#reportData").innerText = translations[lang].reportData;
             document.querySelector("#signOut").innerText = translations[lang].signOut;
-            document.querySelector("#totalAccess").innerText = translations[lang].totalAccess;
-            document.querySelector("#registeredUsers").innerText = translations[lang].registeredUsers;
-            document.querySelector("#totalMenu").innerText = translations[lang].totalMenu;
-            document.querySelector("#totalSubmenu").innerText = translations[lang].totalSubmenu;
-            document.querySelector("#reportTitle").innerText = translations[lang].reportTitle;
-            document.querySelector("#reportType").innerText = translations[lang].reportType;
-            document.querySelector("#date").innerText = translations[lang].date;
-            document.querySelector("#action").innerText = translations[lang].action;
-            document.querySelectorAll(".detail").forEach(el => el.innerText = translations[lang].detail);
-            document.querySelectorAll(".delete").forEach(el => el.innerText = translations[lang].delete);
         }
     </script>
     <style>
         body {
             display: flex;
-            flex-direction: row-reverse;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+        }
+        .sidebar {
+            order: 2;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>COMMUNITY COMPLAINTS</h2>
+        <div class="user-info">
+            <img src="user.jpg" alt="User Image" width="50">
+            <span id="username">Liam Moore</span>
+        </div>
+        <h2 id="complaints">Complaints</h2>
         <select onchange="changeLanguage(this.value)">
             <option value="en">English</option>
             <option value="ar">العربية</option>
