@@ -147,8 +147,8 @@
             changeLanguage(savedLanguage);
         });
 
-        function changeLanguage(lang) {
-            const language = lang || document.getElementById("language-select").value;
+        function changeLanguage(selectedLang) {
+            const lang = selectedLang || document.getElementById("language-select").value;
             const elements = {
                 "title": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
                 "addComplaint": { en: "Add Complaint", ar: "إضافة شكوى" },
@@ -179,31 +179,31 @@
                 ]
             };
 
-            document.querySelector("h1").innerText = elements.title[language];
-            document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${elements.addComplaint[language]}`;
-            document.querySelector(".sidebar h2").innerText = elements.menu[language];
-            document.getElementById("dashboard").innerText = elements.dashboard[language];
-            document.getElementById("complaintsManagement").innerHTML = `${elements.complaintsManagement[language]}
+            document.querySelector("h1").innerText = elements.title[lang];
+            document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${elements.addComplaint[lang]}`;
+            document.querySelector(".sidebar h2").innerText = elements.menu[lang];
+            document.getElementById("dashboard").innerText = elements.dashboard[lang];
+            document.getElementById("complaintsManagement").innerHTML = `${elements.complaintsManagement[lang]}
                 <ul class="dropdown-menu">
-                    <li>${elements.openComplaints[language]}</li>
-                    <li>${elements.closedComplaints[language]}</li>
-                    <li>${elements.pendingComplaints[language]}</li>
-                    <li>${elements.urgentComplaints[language]}</li>
-                    <li>${elements.unresolvedComplaints[language]}</li>
+                    <li>${elements.openComplaints[lang]}</li>
+                    <li>${elements.closedComplaints[lang]}</li>
+                    <li>${elements.pendingComplaints[lang]}</li>
+                    <li>${elements.urgentComplaints[lang]}</li>
+                    <li>${elements.unresolvedComplaints[lang]}</li>
                 </ul>`;
-            document.getElementById("reports").innerText = elements.reports[language];
-            document.getElementById("usersManagement").innerText = elements.usersManagement[language];
-            document.getElementById("notifications").innerText = elements.notifications[language];
-            document.getElementById("archive").innerText = elements.archive[language];
-            document.getElementById("support").innerText = elements.support[language];
-            document.querySelector("label[for='language-select']").innerText = elements.languageLabel[language];
+            document.getElementById("reports").innerText = elements.reports[lang];
+            document.getElementById("usersManagement").innerText = elements.usersManagement[lang];
+            document.getElementById("notifications").innerText = elements.notifications[lang];
+            document.getElementById("archive").innerText = elements.archive[lang];
+            document.getElementById("support").innerText = elements.support[lang];
+            document.querySelector("label[for='language-select']").innerText = elements.languageLabel[lang];
             document.querySelectorAll("th").forEach((th, index) => {
                 if (elements.tableHeaders[index]) {
-                    th.innerText = elements.tableHeaders[index][language];
+                    th.innerText = elements.tableHeaders[index][lang];
                 }
             });
 
-            localStorage.setItem("language", language);
+            localStorage.setItem("language", lang);
         }
 
         document.getElementById("language-select").addEventListener("change", () => {
@@ -213,7 +213,7 @@
 </head>
 <body>
     <div class="sidebar">
-        <h2 id="menu">Complaints</h2>
+        <h2>Complaints</h2>
         <ul>
             <li id="dashboard">Dashboard</li>
             <li id="complaintsManagement">Complaints Management
