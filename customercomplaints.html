@@ -129,7 +129,7 @@
             background: #2ecc71;
         }
         table {
-            width: auto;
+            width: 100%;
             border-collapse: collapse;
             background: white;
             font-size: 12px;
@@ -276,27 +276,12 @@
                     }
                 });
             });
-
-            // Tab functionality
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.addEventListener('click', () => {
-                    document.querySelectorAll('.tab-content').forEach(content => {
-                        content.classList.remove('active');
-                    });
-                    document.querySelector(`#${tab.dataset.target}`).classList.add('active');
-                });
-            });
         });
 
         function changeLanguage(selectedLang) {
             const lang = selectedLang || document.getElementById("language-select").value;
             const elements = {
-                "title": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
-                "newComplaintsTitle": { en: "New Complaints", ar: "الشكاوى الجديدة" },
-                "unassignedComplaintsTitle": { en: "Unassigned Complaints", ar: "الشكاوى غير المخصصة" },
-                "closedComplaintsTitle": { en: "Closed Complaints", ar: "الشكاوى المغلقة" },
-                "unresolvedComplaintsTitle": { en: "Unresolved Complaints", ar: "الشكاوى غير المحلولة" },
-                "urgentComplaintsTitle": { en: "Urgent Complaints", ar: "الشكاوى العاجلة" },
+                "title": { en: "Complaints", ar: "الشكاوى" },
                 "addComplaint": { en: "Add Complaint", ar: "إضافة شكوى" },
                 "menu": { en: "Complaints", ar: "الشكاوى" },
                 "dashboard": { en: "Dashboard", ar: "لوحة التحكم" },
@@ -369,81 +354,100 @@
         </div>
     </div>
     <div class="main-content animate__animated animate__fadeInLeft">
-        <div class="tabs">
-            <div class="tab orange" data-target="pendingComplaints">Pending Complaints</div>
-            <div class="tab blue" data-target="newComplaints">New Complaints</div>
-        </div>
-        <div id="pendingComplaints" class="tab-content active">
-            <header>
-                <h1 id="pendingComplaintsTitle" data-translate="title">Pending Complaints</h1>
-                <button class="add-complaint"><i class="fas fa-plus"></i> <span data-translate="addComplaint">Add Complaint</span></button>
-            </header>
-            <table class="display">
-                <thead>
-                    <tr>
-                        <th data-translate="tableHeaders[0]">#</th>
-                        <th data-translate="tableHeaders[1]">Complaint ID</th>
-                        <th data-translate="tableHeaders[2]">User</th>
-                        <th data-translate="tableHeaders[3]">Customer Name</th>
-                        <th data-translate="tableHeaders[4]">Contact Number</th>
-                        <th data-translate="tableHeaders[5]">Complaint Type</th>
-                        <th data-translate="tableHeaders[6]">Assigned To</th>
-                        <th data-translate="tableHeaders[7]">Complaint Status</th>
-                        <th data-translate="tableHeaders[8]">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td class="complaint-id"><a href="complaint-details.html?id=1001">1001</a></td>
-                        <td>Battery Issue</td>
-                        <td>John Doe</td>
-                        <td>+123456789</td>
-                        <td>Warranty</td>
-                        <td>Engineer A</td>
-                        <td>Open</td>
-                        <td class="actions">
-                            <a href="complaint-details.html?id=1001"><i class="fas fa-edit"></i></a>
-                            <i class="fas fa-external-link-alt"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td class="complaint-id"><a href="complaint-details.html?id=1002">1002</a></td>
-                        <td>Screen Issue</td>
-                        <td>Jane Smith</td>
-                        <td>+987654321</td>
-                        <td>Out of Warranty</td>
-                        <td>Engineer B</td>
-                        <td>Pending</td>
-                        <td class="actions">
-                            <a href="complaint-details.html?id=1002"><i class="fas fa-edit"></i></a>
-                            <i class="fas fa-external-link-alt"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td class="complaint-id"><a href="complaint-details.html?id=1003">1003</a></td>
-                        <td>Software Issue</td>
-                        <td>Alice Brown</td>
-                        <td>+1122334455</td>
-                        <td>Technical Support</td>
-                        <td>Engineer C</td>
-                        <td>Resolved</td>
-                        <td class="actions">
-                            <a href="complaint-details.html?id=1003"><i class="fas fa-edit"></i></a>
-                            <i class="fas fa-external-link-alt"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="newComplaints" class="tab-content">
-            <header>
-                <h1 id="newComplaintsTitle" data-translate="newComplaintsTitle">New Complaints</h1>
-            </header>
-            <table class="display">
-                <thead>
-                    <tr>
-                        <th data-translate="tableHeaders[0]">#</th>
-                        <th data-translate="tableHeaders
+        <header>
+            <h1 data-translate="title">Complaints</h1>
+            <button class="add-complaint"><i class="fas fa-plus"></i> <span data-translate="addComplaint">Add Complaint</span></button>
+        </header>
+        <table class="display">
+            <thead>
+                <tr>
+                    <th data-translate="tableHeaders[0]">#</th>
+                    <th data-translate="tableHeaders[1]">Complaint ID</th>
+                    <th data-translate="tableHeaders[2]">User</th>
+                    <th data-translate="tableHeaders[3]">Customer Name</th>
+                    <th data-translate="tableHeaders[4]">Contact Number</th>
+                    <th data-translate="tableHeaders[5]">Complaint Type</th>
+                    <th data-translate="tableHeaders[6]">Assigned To</th>
+                    <th data-translate="tableHeaders[7]">Complaint Status</th>
+                    <th data-translate="tableHeaders[8]">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1001">1001</a></td>
+                    <td>Battery Issue</td>
+                    <td>John Doe</td>
+                    <td>+123456789</td>
+                    <td>Warranty</td>
+                    <td>Engineer A</td>
+                    <td>Open</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=1001"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1002">1002</a></td>
+                    <td>Screen Issue</td>
+                    <td>Jane Smith</td>
+                    <td>+987654321</td>
+                    <td>Out of Warranty</td>
+                    <td>Engineer B</td>
+                    <td>Pending</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=1002"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1003">1003</a></td>
+                    <td>Software Issue</td>
+                    <td>Alice Brown</td>
+                    <td>+1122334455</td>
+                    <td>Technical Support</td>
+                    <td>Engineer C</td>
+                    <td>Resolved</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=1003"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=2001">2001</a></td>
+                    <td>Network Issue</td>
+                    <td>Michael Johnson</td>
+                    <td>+2233445566</td>
+                    <td>Technical Support</td>
+                    <td>Engineer D</td>
+                    <td>New</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=2001"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=2002">2002</a></td>
+                    <td>Software Update</td>
+                    <td>Linda Green</td>
+                    <td>+6655443322</td>
+                    <td>Warranty</td>
+                    <td>Engineer E</td>
+                    <td>New</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=2002"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=2003">2003</a></td>
+                    <td>Battery Replacement</td>
+                    <td>Chris Lee</td>
+                    <td>+7788990011</td>
+                    <td>Out of Warranty</td>
+                    <td>Engineer F</td
