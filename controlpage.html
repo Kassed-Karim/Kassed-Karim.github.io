@@ -1,4 +1,4 @@
-لقد قمت بإضافة بعض المؤثرات البصرية الجذابة والمريحة للعين إلى الكود الخاص بك باستخدام CSS. لقد قمت بتعديل الألوان، إضافة تأثيرات الماوس، واستخدام الخطوط الحديثة.
+تمام، سأقوم بإضافة المزيد من المؤثرات البصرية باستخدام CSS مثل تأثيرات التدرجات اللونية، الظلال، والتحويلات، لجعل التصميم أكثر جاذبية وعصرية.
 
 ```html name=index.html
 <!DOCTYPE html>
@@ -22,17 +22,19 @@
             flex-direction: row-reverse;
             height: 100vh;
             background: linear-gradient(to right, #ffecd2, #fcb69f);
+            overflow: hidden;
         }
 
         .sidebar {
             width: 250px;
-            background-color: #007bff;
+            background: linear-gradient(45deg, #007bff, #00d2ff);
             color: white;
             padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             height: 100vh;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
@@ -40,6 +42,11 @@
             margin-bottom: 20px;
             font-size: 24px;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar h2:hover {
+            transform: scale(1.1);
         }
 
         .sidebar ul {
@@ -53,11 +60,12 @@
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .sidebar ul li:hover {
             background-color: rgba(255, 255, 255, 0.5);
+            transform: translateX(10px);
         }
 
         .language-switch {
@@ -65,6 +73,7 @@
             background-color: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             text-align: center;
+            transition: background-color 0.3s ease;
         }
 
         .language-switch button {
@@ -75,12 +84,13 @@
             cursor: pointer;
             margin: 3px 5px;
             padding: 5px 10px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .language-switch button:hover {
             background-color: rgba(255, 255, 255, 0.5);
             border-radius: 5px;
+            transform: scale(1.1);
         }
 
         .content {
@@ -89,6 +99,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background: linear-gradient(to left, #ffecd2, #fcb69f);
         }
 
         .cards {
@@ -98,7 +109,7 @@
         }
 
         .card {
-            background-color: #007bff;
+            background: linear-gradient(45deg, #007bff, #00d2ff);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -107,12 +118,13 @@
             font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            background-color: #0056b3;
-            transform: translateY(-10px);
+            background: linear-gradient(45deg, #0056b3, #00aaff);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
