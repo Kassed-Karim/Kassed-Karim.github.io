@@ -61,11 +61,8 @@
         .user-info {
             text-align: center;
             margin-bottom: 20px;
-        }
-        .user-info img {
-            border-radius: 50%;
-            width: 80px;
-            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
         }
         .sidebar h2 {
             text-align: center;
@@ -85,8 +82,8 @@
         }
         .main-content {
             flex-grow: 1;
-            margin-right: 270px;
-            padding: 20px;
+            margin-right: 300px;
+            padding: 40px;
         }
         .stats {
             display: flex;
@@ -139,10 +136,7 @@
 </head>
 <body>
     <div class="sidebar">
-        <div class="user-info">
-            <img src="user.jpg" alt="User Image">
-            <span id="username">Liam Moore</span>
-        </div>
+        <div class="user-info" id="username">Liam Moore</div>
         <h2 data-translate="complaints">Complaints</h2>
         <select onchange="changeLanguage(this.value)">
             <option value="en">English</option>
