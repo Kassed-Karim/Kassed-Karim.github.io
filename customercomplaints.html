@@ -195,7 +195,7 @@
             margin-bottom: 5px;
             font-weight: bold;
         }
-        .search-box input {
+        .search-box input, .search-box select {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -282,7 +282,7 @@
             $('#search-customer-number').on('keyup', function() {
                 table.columns(4).search(this.value).draw();
             });
-            $('#search-complaint-status').on('keyup', function() {
+            $('#search-complaint-status').on('change', function() {
                 table.columns(7).search(this.value).draw();
             });
         });
@@ -378,7 +378,15 @@
             </div>
             <div class="search-box">
                 <label for="search-complaint-status">Search by Complaint Status</label>
-                <input type="text" id="search-complaint-status" placeholder="Complaint Status">
+                <select id="search-complaint-status">
+                    <option value="">All</option>
+                    <option value="New">New</option>
+                    <option value="Closed">Closed</option>
+                    <option value="Resolved">Resolved</option>
+                    <option value="Unresolved">Unresolved</option>
+                    <option value="Unassigned">Unassigned</option>
+                    <option value="Pending">Pending</option>
+                </select>
             </div>
         </div>
         <table class="display">
@@ -440,10 +448,4 @@
                 </tr>
                 <tr>
                     <td>4</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=2001">2001</a></td>
-                    <td>Network Issue</td>
-                    <td>Michael Johnson</td>
-                    <td>+2233445566</td>
-                    <td>Technical Support</td>
-                    <td>Engineer D</td>
-                    <td>
+                   
