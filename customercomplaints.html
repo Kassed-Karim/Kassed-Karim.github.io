@@ -181,6 +181,26 @@
         .complaint-id a:hover {
             color: #0056b3;
         }
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .search-box {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+        .search-box label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .search-box input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
         @keyframes slideIn {
             from {
                 opacity: 0;
@@ -347,6 +367,20 @@
             <h1 data-translate="title">Complaints Overview</h1>
             <button class="add-complaint"><i class="fas fa-plus"></i> <span data-translate="addComplaint">Add Complaint</span></button>
         </header>
+        <div class="search-container">
+            <div class="search-box">
+                <label for="search-complaint-id">Search by Complaint ID</label>
+                <input type="text" id="search-complaint-id" placeholder="Complaint ID">
+            </div>
+            <div class="search-box">
+                <label for="search-customer-number">Search by Customer Number</label>
+                <input type="text" id="search-customer-number" placeholder="Customer Number">
+            </div>
+            <div class="search-box">
+                <label for="search-complaint-status">Search by Complaint Status</label>
+                <input type="text" id="search-complaint-status" placeholder="Complaint Status">
+            </div>
+        </div>
         <table class="display">
             <thead>
                 <tr>
@@ -415,31 +449,4 @@
                     <td>New</td>
                     <td class="actions">
                         <a href="complaint-details.html?id=2001"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=2002">2002</a></td>
-                    <td>Software Update</td>
-                    <td>Linda Green</td>
-                    <td>+6655443322</td>
-                    <td>Warranty</td>
-                    <td>Engineer E</td>
-                    <td>New</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=2002"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=2003">2003</a></td>
-                    <td>Battery Replacement</td>
-                    <td>Chris Lee</td>
-                    <td>+7788990011</td>
-                    <td>Out of Warranty</td>
-                    <td>Engineer F</td>
-                    <td>New</td>
-                    <td class="actions">
-                        <a href="compl
+                        <i class="fas
