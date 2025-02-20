@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Complaint Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             margin: 0;
             padding: 0;
-            background-color: orange; /* تغيير لون خلفية الصفحة إلى برتقالي */
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
         }
         .sidebar {
             width: 250px;
@@ -22,13 +24,17 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            font-size: 14px; /* تقليل حجم الخط للقائمة */
-            position: fixed; /* تثبيت الشريط الجانبي */
+            font-size: 14px;
+            position: fixed;
             top: 0;
             right: 0;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            border-radius: 10px 0 0 10px;
         }
         .sidebar h2 {
             text-align: center;
+            font-size: 20px;
+            margin-bottom: 20px;
         }
         .sidebar ul {
             list-style: none;
@@ -40,25 +46,31 @@
             cursor: pointer;
             transition: 0.3s;
             position: relative;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
         .sidebar ul li:hover {
             background: #0056b3;
+            transform: scale(1.05);
         }
         .sidebar ul li .dropdown-menu {
             display: none;
             position: absolute;
-            right: 100%; /* تغيير الاتجاه إلى اليسار */
+            right: 100%;
             top: 0;
             background: #007BFF;
             padding: 0;
             list-style: none;
             width: 200px;
+            border-radius: 5px 0 0 5px;
         }
         .sidebar ul li:hover .dropdown-menu {
             display: block;
+            animation: slideIn 0.3s ease-in-out;
         }
         .sidebar ul li .dropdown-menu li {
             padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
         }
         .sidebar ul li .dropdown-menu li:hover {
             background: #0056b3;
@@ -70,27 +82,31 @@
             cursor: pointer;
             border-radius: 5px;
             margin-bottom: 10px;
-            color: black;
+            color: white;
             font-weight: bold;
         }
         .language-switch select {
             background: transparent;
-            color: black;
+            color: white;
             border: none;
             font-size: 16px;
             font-weight: bold;
+            outline: none;
         }
         .main-content {
             flex: 1;
             padding: 20px;
             background: #ecf0f1;
-            margin-right: 270px; /* إضافة هامش لتجنب التداخل مع الشريط الجانبي */
+            margin-right: 270px;
+            overflow-y: auto;
+            transition: all 0.3s ease-in-out;
         }
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
         }
         .add-complaint {
             background: #27ae60;
@@ -100,6 +116,7 @@
             cursor: pointer;
             border-radius: 5px;
             font-size: 16px;
+            transition: background 0.3s ease-in-out;
         }
         .add-complaint:hover {
             background: #2ecc71;
@@ -108,16 +125,26 @@
             width: 100%;
             border-collapse: collapse;
             background: white;
-            font-size: 12px;
+            font-size: 14px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 15px;
             text-align: left;
+            transition: background 0.3s ease-in-out;
         }
         th {
             background: #34495e;
             color: white;
+        }
+        tr:nth-child(even) td {
+            background: #f5f5f5;
+        }
+        tr:hover td {
+            background: #e1e1e1;
         }
         .actions {
             display: flex;
@@ -141,6 +168,26 @@
         }
         .complaint-id a:hover {
             color: #0056b3;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
     <script>
@@ -225,7 +272,7 @@
     </script>
 </head>
 <body>
-    <div class="sidebar">
+    <div class="sidebar animate__animated animate__fadeInRight">
         <h2>Complaints</h2>
         <ul>
             <li id="dashboard">Dashboard</li>
@@ -252,7 +299,7 @@
             </select>
         </div>
     </div>
-    <div class="main-content">
+    <div class="main-content animate__animated animate__fadeInLeft">
         <header>
             <h1 id="pendingComplaintsTitle">Pending Complaints</h1>
             <button class="add-complaint"><i class="fas fa-plus"></i> Add Complaint</button>
@@ -390,42 +437,4 @@
                     <th>Complaint ID</th>
                     <th>User</th>
                     <th>Customer Name</th>
-                    <th>Contact Number</th>
-                    <th>Complaint Type</th>
-                    <th>Assigned To</th>
-                    <th>Complaint Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=3001">3001</a></td>
-                    <td>Connection Issue</td>
-                    <td>Sarah Wilson</td>
-                    <td>+3344556677</td>
-                    <td>Out of Warranty</td>
-                    <td>Unassigned</td>
-                    <td>Open</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=3001"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=3002">3002</a></td>
-                    <td>Hardware Failure</td>
-                    <td>Mark Wilson</td>
-                    <td>+9988776655</td>
-                    <td>Warranty</td>
-                    <td>Unassigned</td>
-                    <td>Open</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=3002"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="complaint-id"><a href="complaint
+                    <th>Contact Number</th
