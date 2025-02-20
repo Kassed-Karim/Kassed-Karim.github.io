@@ -23,7 +23,12 @@
                 searchByComplaint: "Search by Complaint Number",
                 searchByClient: "Search by Client Number",
                 searchByStatus: "Search by Status",
-                go: "Go"
+                go: "Go",
+                complaintNumber: "Complaint Number",
+                clientName: "Client Name",
+                complaintType: "Complaint Type",
+                complaintStatus: "Complaint Status",
+                directedTo: "Directed To"
             },
             ar: {
                 complaints: "الشكاوى",
@@ -40,7 +45,12 @@
                 searchByComplaint: "البحث برقم الشكوى",
                 searchByClient: "البحث برقم العميل",
                 searchByStatus: "البحث بالحالة",
-                go: "اذهب"
+                go: "اذهب",
+                complaintNumber: "رقم الشكوى",
+                clientName: "اسم العميل",
+                complaintType: "نوع الشكوى",
+                complaintStatus: "حالة الشكوى",
+                directedTo: "موجهة إلى"
             }
         };
         
@@ -58,108 +68,98 @@
             margin: 0;
         }
         .sidebar {
-            width: 260px;
-            background-color: #003366;
-            color: white;
-            padding: 20px;
-            position: fixed;
-            height: 100vh;
-            right: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .user-info {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .main-content {
-            flex-grow: 1;
-            margin-right: 280px;
-            padding: 40px;
-        }
-        .search-bar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-        .search-bar input, .search-bar select, .search-bar button {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-        .search-bar button {
+            width: 250px;
             background-color: #007bff;
             color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .search-bar button:hover {
-            background-color: #0056b3;
-        }
-        .stats {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-        }
-        .card {
-            background-color: #ffa500;
             padding: 20px;
-            border-radius: 10px;
-            flex: 1;
-            text-align: center;
+            height: 100vh;
+            position: fixed;
+            right: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar h2 {
+            margin-bottom: 20px;
+        }
+        .sidebar a {
             color: white;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .main-content {
+            margin-right: 270px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <div class="user-info" id="username">Liam Moore</div>
-        <h2 data-translate="complaints">Complaints</h2>
-        <select onchange="changeLanguage(this.value)">
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-        </select>
-        <ul>
-            <li data-translate="dashboard">Dashboard</li>
-            <li data-translate="accessAuthority">Access Authority</li>
-            <li data-translate="userData">User Data</li>
-            <li data-translate="menuManagement">Menu Management</li>
-            <li data-translate="submenuManagement">Submenu Management</li>
-            <li data-translate="myProfile">My Profile</li>
-            <li data-translate="updateProfile">Update Profile</li>
-            <li data-translate="changePassword">Change Password</li>
-            <li data-translate="reportData">Report Data</li>
-            <li data-translate="signOut">Sign Out</li>
-        </ul>
+        <h2 data-translate="dashboard">Dashboard</h2>
+        <a href="#" data-translate="complaints">Complaints</a>
+        <a href="#" data-translate="accessAuthority">Access Authority</a>
+        <a href="#" data-translate="userData">User Data</a>
+        <a href="#" data-translate="menuManagement">Menu Management</a>
+        <a href="#" data-translate="submenuManagement">Submenu Management</a>
+        <a href="#" data-translate="myProfile">My Profile</a>
+        <a href="#" data-translate="updateProfile">Update Profile</a>
+        <a href="#" data-translate="changePassword">Change Password</a>
+        <a href="#" data-translate="reportData">Report Data</a>
+        <a href="#" data-translate="signOut">Sign Out</a>
     </div>
+    
     <div class="main-content">
-        <header>
-            <h1 data-translate="dashboard">Dashboard</h1>
-        </header>
-        <div class="search-bar">
-            <input type="text" placeholder="Search by Complaint Number" data-translate="searchByComplaint">
-            <input type="text" placeholder="Search by Client Number" data-translate="searchByClient">
-            <select data-translate="searchByStatus">
-                <option value="new">New</option>
-                <option value="pending">Pending</option>
-                <option value="resolved">Resolved</option>
-                <option value="unresolved">Unresolved</option>
-                <option value="unassigned">Unassigned</option>
-            </select>
-            <button data-translate="go">Go</button>
-        </div>
-        <div class="stats">
-            <div class="card">Total Access Authority <span>2</span></div>
-            <div class="card">Registered Users <span>7</span></div>
-            <div class="card">Total Menu <span>5</span></div>
-            <div class="card">Total Submenu <span>10</span></div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th data-translate="complaintNumber">Complaint Number</th>
+                        <th data-translate="clientName">Client Name</th>
+                        <th data-translate="complaintType">Complaint Type</th>
+                        <th data-translate="complaintStatus">Complaint Status</th>
+                        <th data-translate="directedTo">Directed To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12345</td>
+                        <td>John Doe</td>
+                        <td>Service Issue</td>
+                        <td>Pending</td>
+                        <td>Support Team</td>
+                    </tr>
+                    <tr>
+                        <td>67890</td>
+                        <td>Jane Smith</td>
+                        <td>Billing</td>
+                        <td>Resolved</td>
+                        <td>Finance</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
