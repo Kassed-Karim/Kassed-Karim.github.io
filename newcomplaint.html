@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Complaint Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Complaint Form</h1>
+        <p>We're sorry to hear about your experience. Please provide us with details of your complaint so that we can address it promptly.</p>
+        
+        <form>
+            <fieldset>
+                <legend>Your Information</legend>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="First Name">
+                    <input type="text" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="example@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="(000) 000-0000">
+                </div>
+                <div class="form-group">
+                    <label>Date of Complaint</label>
+                    <input type="date">
+                </div>
+                <div class="form-group">
+                    <label>Order/Invoice Number</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Proof of Purchase (If Applicable)</label>
+                    <input type="file">
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Complaint Details</legend>
+                <div class="form-group">
+                    <label>What is the nature of your complaint?</label>
+                    <textarea></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Please describe the incident or issue</label>
+                    <textarea></textarea>
+                </div>
+                <div class="form-group">
+                    <label>What resolution are you seeking?</label>
+                    <textarea></textarea>
+                </div>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Supporting Documents (Optional)</legend>
+                <div class="form-group">
+                    <label>Upload File</label>
+                    <input type="file">
+                </div>
+            </fieldset>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
