@@ -19,17 +19,7 @@
                 updateProfile: "Update Profile",
                 changePassword: "Change Password",
                 reportData: "Report Data",
-                signOut: "Sign Out",
-                totalAccess: "Total Access Authority",
-                registeredUsers: "Registered Users",
-                totalMenu: "Total Menu",
-                totalSubmenu: "Total Submenu",
-                reportTitle: "Report Title",
-                reportType: "Report Type",
-                date: "Date",
-                action: "Action",
-                detail: "Detail",
-                delete: "Delete"
+                signOut: "Sign Out"
             },
             ar: {
                 complaints: "الشكاوى",
@@ -42,32 +32,14 @@
                 updateProfile: "تحديث الملف الشخصي",
                 changePassword: "تغيير كلمة المرور",
                 reportData: "بيانات الشكاوى",
-                signOut: "تسجيل الخروج",
-                totalAccess: "إجمالي الصلاحيات",
-                registeredUsers: "المستخدمون المسجلون",
-                totalMenu: "إجمالي القوائم",
-                totalSubmenu: "إجمالي القوائم الفرعية",
-                reportTitle: "عنوان الشكوى",
-                reportType: "نوع الشكوى",
-                date: "التاريخ",
-                action: "الإجراء",
-                detail: "تفاصيل",
-                delete: "حذف"
+                signOut: "تسجيل الخروج"
             }
         };
         
         function changeLanguage(lang) {
-            document.querySelector("#complaints").innerText = translations[lang].complaints;
-            document.querySelector("#dashboard").innerText = translations[lang].dashboard;
-            document.querySelector("#accessAuthority").innerText = translations[lang].accessAuthority;
-            document.querySelector("#userData").innerText = translations[lang].userData;
-            document.querySelector("#menuManagement").innerText = translations[lang].menuManagement;
-            document.querySelector("#submenuManagement").innerText = translations[lang].submenuManagement;
-            document.querySelector("#myProfile").innerText = translations[lang].myProfile;
-            document.querySelector("#updateProfile").innerText = translations[lang].updateProfile;
-            document.querySelector("#changePassword").innerText = translations[lang].changePassword;
-            document.querySelector("#reportData").innerText = translations[lang].reportData;
-            document.querySelector("#signOut").innerText = translations[lang].signOut;
+            document.querySelectorAll("[data-translate]").forEach(element => {
+                element.innerText = translations[lang][element.dataset.translate];
+            });
         }
     </script>
     <style>
@@ -75,56 +47,140 @@
             display: flex;
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            margin: 0;
         }
         .sidebar {
-            order: 2;
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            right: 0;
+        }
+        .user-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .user-info img {
+            border-radius: 50%;
+            width: 80px;
+            margin-bottom: 10px;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .sidebar ul li:hover {
+            background-color: #34495e;
+        }
+        .main-content {
+            flex-grow: 1;
+            margin-right: 270px;
+            padding: 20px;
+        }
+        .stats {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+        }
+        .card span {
+            display: block;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .report table {
+            width: 100%;
+            background-color: #fff;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+        }
+        .report th, .report td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        .report th {
+            background-color: #3498db;
+            color: white;
+        }
+        .detail {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .delete {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <div class="user-info">
-            <img src="user.jpg" alt="User Image" width="50">
+            <img src="user.jpg" alt="User Image">
             <span id="username">Liam Moore</span>
         </div>
-        <h2 id="complaints">Complaints</h2>
+        <h2 data-translate="complaints">Complaints</h2>
         <select onchange="changeLanguage(this.value)">
             <option value="en">English</option>
             <option value="ar">العربية</option>
         </select>
         <ul>
-            <li id="dashboard">Dashboard</li>
-            <li id="accessAuthority">Access Authority</li>
-            <li id="userData">User Data</li>
-            <li id="menuManagement">Menu Management</li>
-            <li id="submenuManagement">Submenu Management</li>
-            <li id="myProfile">My Profile</li>
-            <li id="updateProfile">Update Profile</li>
-            <li id="changePassword">Change Password</li>
-            <li id="reportData">Report Data</li>
-            <li id="signOut">Sign Out</li>
+            <li data-translate="dashboard">Dashboard</li>
+            <li data-translate="accessAuthority">Access Authority</li>
+            <li data-translate="userData">User Data</li>
+            <li data-translate="menuManagement">Menu Management</li>
+            <li data-translate="submenuManagement">Submenu Management</li>
+            <li data-translate="myProfile">My Profile</li>
+            <li data-translate="updateProfile">Update Profile</li>
+            <li data-translate="changePassword">Change Password</li>
+            <li data-translate="reportData">Report Data</li>
+            <li data-translate="signOut">Sign Out</li>
         </ul>
     </div>
     <div class="main-content">
         <header>
-            <h1 id="dashboard">Dashboard</h1>
+            <h1 data-translate="dashboard">Dashboard</h1>
         </header>
         <div class="stats">
-            <div class="card" id="totalAccess">Total Access Authority <span>2</span></div>
-            <div class="card" id="registeredUsers">Registered Users <span>7</span></div>
-            <div class="card" id="totalMenu">Total Menu <span>5</span></div>
-            <div class="card" id="totalSubmenu">Total Submenu <span>10</span></div>
+            <div class="card">Total Access Authority <span>2</span></div>
+            <div class="card">Registered Users <span>7</span></div>
+            <div class="card">Total Menu <span>5</span></div>
+            <div class="card">Total Submenu <span>10</span></div>
         </div>
         <section class="report">
-            <h2 id="reportData">Report Data</h2>
+            <h2 data-translate="reportData">Report Data</h2>
             <table>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th id="reportTitle">Report Title</th>
-                        <th id="reportType">Report Type</th>
-                        <th id="date">Date</th>
-                        <th id="action">Action</th>
+                        <th>Report Title</th>
+                        <th>Report Type</th>
+                        <th>Date</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -133,13 +189,6 @@
                         <td>Demo</td>
                         <td>Corona Virus</td>
                         <td>03 May 2022</td>
-                        <td><button class="detail">Detail</button> <button class="delete">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Need Education Help</td>
-                        <td>Education</td>
-                        <td>27 March 2022</td>
                         <td><button class="detail">Detail</button> <button class="delete">Delete</button></td>
                     </tr>
                 </tbody>
