@@ -5,21 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
             display: flex;
             flex-direction: row-reverse;
             height: 100vh;
-            background: #f0f2f5;
-            overflow: hidden;
+            background-color: orange;
         }
 
         .sidebar {
@@ -31,14 +28,10 @@
             flex-direction: column;
             justify-content: space-between;
             height: 100vh;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
         }
 
         .sidebar h2 {
             margin-bottom: 20px;
-            font-size: 24px;
-            text-align: center;
         }
 
         .sidebar ul {
@@ -47,23 +40,21 @@
         }
 
         .sidebar ul li {
-            padding: 15px;
+            padding: 10px;
             margin: 10px 0;
             background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .sidebar ul li:hover {
             background-color: rgba(255, 255, 255, 0.5);
-            transform: translateX(10px);
         }
 
         .language-switch {
-            padding: 10px;
+            padding: 5px;
             background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            border-radius: 5px;
             text-align: center;
         }
 
@@ -73,15 +64,8 @@
             color: white;
             font-size: 14px;
             cursor: pointer;
-            margin: 3px 5px;
-            padding: 5px 10px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .language-switch button:hover {
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 5px;
-            transform: scale(1.1);
+            margin: 3px;
+            padding: 5px;
         }
 
         .content {
@@ -90,43 +74,38 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #f0f2f5;
-            overflow-y: auto;
         }
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
         .card {
-            background: #007bff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: blue;
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             color: white;
             text-align: center;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            background: #0056b3;
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            background-color: darkblue;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <div>
-            <h2 id="dashboard-title">لوحة التحكم</h2>
+            <h2 id="dashboard-title">Control Panel</h2>
             <ul>
                 <li data-en="Home" data-ar="الرئيسية">الرئيسية</li>
-                <li data-en="Control Panel" data-ar="لوحة التحكم">لوحة التحكم</li>
+                <li data-en="Control Panel" data-ar="لوحة التحكم">Control Panel</li>
                 <li data-en="Notifications" data-ar="الإشعارات">الإشعارات</li>
                 <li data-en="Accounts" data-ar="الحسابات">الحسابات</li>
                 <li data-en="Security" data-ar="الأمان">الأمان</li>
