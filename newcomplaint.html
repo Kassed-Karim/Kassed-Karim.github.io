@@ -21,7 +21,7 @@
         .container {
             width: 50%;
             background: #f8f8f8;
-            padding: 40px;
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             color: black;
@@ -35,7 +35,7 @@
         }
         .header {
             text-align: center;
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             color: black;
             text-transform: uppercase;
@@ -52,24 +52,17 @@
         form {
             display: flex;
             flex-direction: column;
-            gap: 25px;
-        }
-        .form-section {
-            margin-bottom: 25px;
+            gap: 20px;
         }
         .form-section h2 {
-            font-size: 20px;
-            margin-bottom: 15px;
+            font-size: 18px;
+            margin-bottom: 10px;
             color: black;
             border-bottom: 2px solid black;
             padding-bottom: 5px;
         }
-        .form-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
         .form-group label {
+            font-size: 14px;
             font-weight: 500;
             flex: 1 1 100%;
             color: black;
@@ -77,46 +70,27 @@
         .form-group input, .form-group textarea {
             flex: 1;
             min-width: calc(50% - 10px);
-            padding: 12px;
+            padding: 10px;
             border: 1px solid black;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 12px;
             background: transparent;
             color: black;
             transition: all 0.3s ease;
         }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: #333;
-            transform: scale(1.02);
-        }
         .form-group textarea {
-            min-height: 100px;
+            min-height: 80px;
             width: 100%;
         }
-        .file-upload {
-            border: 2px dashed black;
-            padding: 25px;
-            text-align: center;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .file-upload:hover {
-            background: rgba(0, 0, 0, 0.1);
-        }
         button {
-            padding: 14px;
+            padding: 12px;
             background-color: black;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px;
             transition: transform 0.3s, background 0.3s;
-        }
-        button:hover {
-            background-color: #555;
-            transform: scale(1.05);
         }
     </style>
 </head>
@@ -140,44 +114,14 @@
                     <label>Phone Number</label>
                     <input type="tel" placeholder="(000) 000-0000">
                 </div>
-                <div class="form-group">
-                    <label>Date of Complaint</label>
-                    <input type="date">
-                </div>
-                <div class="form-group">
-                    <label>Order/Invoice Number</label>
-                    <input type="text">
-                </div>
-                <div class="form-group file-upload">
-                    <label>Proof of Purchase (If Applicable)</label>
-                    <input type="file">
-                </div>
             </div>
-            
             <div class="form-section">
                 <h2>Complaint Details</h2>
                 <div class="form-group">
                     <label>What is the nature of your complaint?</label>
                     <textarea></textarea>
                 </div>
-                <div class="form-group">
-                    <label>Please describe the incident or issue</label>
-                    <textarea></textarea>
-                </div>
-                <div class="form-group">
-                    <label>What resolution are you seeking?</label>
-                    <textarea></textarea>
-                </div>
             </div>
-            
-            <div class="form-section">
-                <h2>Supporting Documents (Optional)</h2>
-                <div class="form-group file-upload">
-                    <label>Upload File</label>
-                    <input type="file">
-                </div>
-            </div>
-            
             <button type="submit">Submit</button>
         </form>
     </div>
