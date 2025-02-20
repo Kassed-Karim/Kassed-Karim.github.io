@@ -153,6 +153,9 @@
                 "title": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
                 "newComplaintsTitle": { en: "New Complaints", ar: "الشكاوى الجديدة" },
                 "unassignedComplaintsTitle": { en: "Unassigned Complaints", ar: "الشكاوى غير المخصصة" },
+                "closedComplaintsTitle": { en: "Closed Complaints", ar: "الشكاوى المغلقة" },
+                "unresolvedComplaintsTitle": { en: "Unresolved Complaints", ar: "الشكاوى غير المحلولة" },
+                "urgentComplaintsTitle": { en: "Urgent Complaints", ar: "الشكاوى العاجلة" },
                 "addComplaint": { en: "Add Complaint", ar: "إضافة شكوى" },
                 "menu": { en: "Complaints", ar: "الشكاوى" },
                 "dashboard": { en: "Dashboard", ar: "لوحة التحكم" },
@@ -184,6 +187,9 @@
             document.querySelector("#pendingComplaintsTitle").innerText = elements.title[lang];
             document.querySelector("#newComplaintsTitle").innerText = elements.newComplaintsTitle[lang];
             document.querySelector("#unassignedComplaintsTitle").innerText = elements.unassignedComplaintsTitle[lang];
+            document.querySelector("#closedComplaintsTitle").innerText = elements.closedComplaintsTitle[lang];
+            document.querySelector("#unresolvedComplaintsTitle").innerText = elements.unresolvedComplaintsTitle[lang];
+            document.querySelector("#urgentComplaintsTitle").innerText = elements.urgentComplaintsTitle[lang];
             document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${elements.addComplaint[lang]}`;
             document.querySelector(".sidebar h2").innerText = elements.menu[lang];
             document.getElementById("dashboard").innerText = elements.dashboard[lang];
@@ -427,12 +433,4 @@
                     <td>Unassigned</td>
                     <td>Open</td>
                     <td class="actions">
-                        <a href="complaint-details.html?id=3003"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</body>
-</html>
+                        <a
