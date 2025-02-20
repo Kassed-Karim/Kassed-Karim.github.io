@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Complaint Form</title>
+    <title>Customer Complaint</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,26 +17,36 @@
             min-height: 100vh;
         }
         .container {
-            width: 60%;
+            width: 50%;
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-        h1, p {
+        h1 {
             text-align: center;
+            font-size: 26px;
+            font-weight: 600;
+            color: #333;
+        }
+        p {
+            text-align: center;
+            color: #666;
         }
         form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
         .form-section {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         .form-section h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #444;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
         }
         .form-group {
             display: flex;
@@ -44,49 +54,51 @@
             gap: 15px;
         }
         .form-group label {
-            font-weight: bold;
+            font-weight: 500;
             flex: 1 1 100%;
         }
         .form-group input, .form-group textarea {
             flex: 1;
             min-width: calc(50% - 10px);
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 14px;
         }
         .form-group textarea {
-            min-height: 80px;
+            min-height: 100px;
             width: 100%;
         }
         .file-upload {
             border: 2px dashed #ccc;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background 0.3s;
         }
         .file-upload:hover {
-            background: #f0f0f0;
+            background: #eef;
         }
         button {
-            padding: 12px;
-            background-color: #28a745;
+            padding: 14px;
+            background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 16px;
-            width: 100%;
+            font-size: 18px;
+            transition: background 0.3s;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Customer Complaint Form</h1>
-        <p>We're sorry to hear about your experience. Please provide us with details of your complaint so that we can address it promptly.</p>
+        <h1>Customer Complaint</h1>
+        <p>We're sorry to hear about your experience. Please provide us with details so we can address it promptly.</p>
         
         <form>
             <div class="form-section">
