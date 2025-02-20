@@ -1,452 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complaint Management</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>Complaint Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+
         .sidebar {
             width: 250px;
-            background: #007BFF;
+            background-color: #343a40;
             color: white;
             padding: 20px;
-            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            font-size: 14px;
-            position: fixed;
-            top: 0;
-            right: 0;
-            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
-            border-radius: 10px 0 0 10px;
-            animation: slideInRight 0.5s ease-in-out;
+            height: 100vh;
         }
-        .sidebar h2 {
-            text-align: center;
-            font-size: 20px;
-            margin-bottom: 20px;
-            animation: fadeInDown 0.5s ease-in-out;
-        }
+
         .sidebar ul {
             list-style: none;
             padding: 0;
-            flex-grow: 1;
         }
+
         .sidebar ul li {
-            padding: 10px 15px;
-            cursor: pointer;
-            transition: 0.3s;
-            position: relative;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            animation: fadeInLeft 0.5s ease-in-out;
-        }
-        .sidebar ul li:hover {
-            background: #0056b3;
-            transform: scale(1.05);
-        }
-        .sidebar ul li .dropdown-menu {
-            display: none;
-            position: absolute;
-            right: 100%;
-            top: 0;
-            background: #007BFF;
-            padding: 0;
-            list-style: none;
-            width: 200px;
-            border-radius: 5px 0 0 5px;
-        }
-        .sidebar ul li:hover .dropdown-menu {
-            display: block;
-            animation: slideIn 0.3s ease-in-out;
-        }
-        .sidebar ul li .dropdown-menu li {
-            padding: 10px 15px;
-            border-radius: 0 5px 5px 0;
-        }
-        .sidebar ul li .dropdown-menu li:hover {
-            background: #0056b3;
-        }
-        .language-switch {
-            text-align: center;
             padding: 10px;
-            background: #0056b3;
+            margin: 10px 0;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li i {
+            margin-right: 10px;
+        }
+
+        .sidebar ul li:hover {
+            background-color: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
-            margin-bottom: 10px;
-            color: white;
-            font-weight: bold;
-            animation: fadeInUp 0.5s ease-in-out;
         }
-        .language-switch select {
-            background: transparent;
-            color: white;
-            border: none;
-            font-size: 16px;
-            font-weight: bold;
-            outline: none;
-        }
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            background: #ecf0f1;
-            margin-right: 270px;
-            overflow-y: auto;
-            transition: all 0.3s ease-in-out;
-        }
-        header {
+
+        .top-bar {
+            width: calc(100% - 250px);
+            background-color: white;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            animation: fadeInDown 1s ease-in-out;
+            border-bottom: 1px solid #ddd;
         }
-        .add-complaint {
-            background: #27ae60;
-            color: white;
-            border: none;
-            padding: 10px 20px;
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            width: calc(100% - 250px);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
             cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: background 0.3s ease-in-out;
         }
-        .add-complaint:hover {
-            background: #2ecc71;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            font-size: 14px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease-in-out;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: left;
-            transition: background 0.3s ease-in-out;
-        }
-        th {
-            background: #34495e;
-            color: white;
-        }
-        tr:nth-child(even) td {
-            background: #f5f5f5;
-        }
-        tr:hover td {
-            background: #e1e1e1;
-        }
-        .actions {
-            display: flex;
-            gap: 10px;
-        }
-        .actions a {
-            color: inherit;
-            text-decoration: none;
-        }
-        .actions i {
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .actions i:hover {
-            color: #007BFF;
-        }
-        .complaint-id a {
-            color: #007BFF;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .complaint-id a:hover {
-            color: #0056b3;
-        }
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(100%);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(100%);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+
+        .card-blue { background-color: #007bff; color: white; }
+        .card-red { background-color: #dc3545; color: white; }
+        .card-yellow { background-color: #ffc107; color: black; }
+        .card-green { background-color: #28a745; color: white; }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const savedLanguage = localStorage.getItem("language") || "en";
-            document.getElementById("language-select").value = savedLanguage;
-            changeLanguage(savedLanguage);
-        });
-
-        function changeLanguage(selectedLang) {
-            const lang = selectedLang || document.getElementById("language-select").value;
-            const elements = {
-                "title": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
-                "newComplaintsTitle": { en: "New Complaints", ar: "الشكاوى الجديدة" },
-                "unassignedComplaintsTitle": { en: "Unassigned Complaints", ar: "الشكاوى غير المخصصة" },
-                "closedComplaintsTitle": { en: "Closed Complaints", ar: "الشكاوى المغلقة" },
-                "unresolvedComplaintsTitle": { en: "Unresolved Complaints", ar: "الشكاوى غير المحلولة" },
-                "urgentComplaintsTitle": { en: "Urgent Complaints", ar: "الشكاوى العاجلة" },
-                "addComplaint": { en: "Add Complaint", ar: "إضافة شكوى" },
-                "menu": { en: "Complaints", ar: "الشكاوى" },
-                "dashboard": { en: "Dashboard", ar: "لوحة التحكم" },
-                "complaintsManagement": { en: "Complaints Management", ar: "إدارة الشكاوى" },
-                "openComplaints": { en: "Open Complaints", ar: "الشكاوى المفتوحة" },
-                "closedComplaints": { en: "Closed Complaints", ar: "الشكاوى المغلقة" },
-                "pendingComplaints": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
-                "urgentComplaints": { en: "Urgent Complaints", ar: "الشكاوى العاجلة" },
-                "unresolvedComplaints": { en: "Unresolved Complaints", ar: "الشكاوى غير المحلولة" },
-                "reports": { en: "Reports", ar: "التقارير" },
-                "usersManagement": { en: "Users Management", ar: "إدارة المستخدمين" },
-                "notifications": { en: "Notifications", ar: "الإشعارات" },
-                "archive": { en: "Archive", ar: "الأرشيف" },
-                "support": { en: "Support", ar: "الدعم" },
-                "languageLabel": { en: "Language:", ar: "اللغة:" },
-                "tableHeaders": [
-                    { en: "#", ar: "#" },
-                    { en: "Complaint ID", ar: "معرف الشكوى" },
-                    { en: "User", ar: "المستخدم" },
-                    { en: "Customer Name", ar: "اسم العميل" },
-                    { en: "Contact Number", ar: "رقم الاتصال" },
-                    { en: "Complaint Type", ar: "نوع الشكوى" },
-                    { en: "Assigned To", ar: "مكلف إلى" },
-                    { en: "Complaint Status", ar: "حالة الشكوى" },
-                    { en: "Actions", ar: "الإجراءات" }
-                ]
-            };
-
-            document.querySelector("#pendingComplaintsTitle").innerText = elements.title[lang];
-            document.querySelector("#newComplaintsTitle").innerText = elements.newComplaintsTitle[lang];
-            document.querySelector("#unassignedComplaintsTitle").innerText = elements.unassignedComplaintsTitle[lang];
-            document.querySelector("#closedComplaintsTitle").innerText = elements.closedComplaintsTitle[lang];
-            document.querySelector("#unresolvedComplaintsTitle").innerText = elements.unresolvedComplaintsTitle[lang];
-            document.querySelector("#urgentComplaintsTitle").innerText = elements.urgentComplaintsTitle[lang];
-            document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${elements.addComplaint[lang]}`;
-            document.querySelector(".sidebar h2").innerText = elements.menu[lang];
-            document.getElementById("dashboard").innerText = elements.dashboard[lang];
-            document.getElementById("complaintsManagement").innerHTML = `${elements.complaintsManagement[lang]}
-                <ul class="dropdown-menu">
-                    <li>${elements.openComplaints[lang]}</li>
-                    <li>${elements.closedComplaints[lang]}</li>
-                    <li>${elements.pendingComplaints[lang]}</li>
-                    <li>${elements.urgentComplaints[lang]}</li>
-                    <li>${elements.unresolvedComplaints[lang]}</li>
-                </ul>`;
-            document.getElementById("reports").innerText = elements.reports[lang];
-            document.getElementById("usersManagement").innerText = elements.usersManagement[lang];
-            document.getElementById("notifications").innerText = elements.notifications[lang];
-            document.getElementById("archive").innerText = elements.archive[lang];
-            document.getElementById("support").innerText = elements.support[lang];
-            document.querySelector("label[for='language-select']").innerText = elements.languageLabel[lang];
-            document.querySelectorAll("th").forEach((th, index) => {
-                if (elements.tableHeaders[index]) {
-                    th.innerText = elements.tableHeaders[index][lang];
-                }
-            });
-
-            localStorage.setItem("language", lang);
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+            localStorage.setItem('selectedLanguage', lang);
+            location.reload();
         }
 
-        document.getElementById("language-select").addEventListener("change", () => {
-            changeLanguage();
+        document.addEventListener("DOMContentLoaded", function() {
+            let savedLang = localStorage.getItem("selectedLanguage") || "ar";
+            document.documentElement.lang = savedLang;
+            
+            $("#complaintsTable").DataTable();
         });
     </script>
 </head>
 <body>
-    <div class="sidebar animate__animated animate__fadeInRight">
-        <h2>Complaints</h2>
+    <div class="sidebar">
+        <h2>Complaint Drish</h2>
         <ul>
-            <li id="dashboard">Dashboard</li>
-            <li id="complaintsManagement">Complaints Management
-                <ul class="dropdown-menu">
-                    <li id="openComplaints">Open Complaints</li>
-                    <li id="closedComplaints">Closed Complaints</li>
-                    <li id="pendingComplaints">Pending Complaints</li>
-                    <li id="urgentComplaints">Urgent Complaints</li>
-                    <li id="unresolvedComplaints">Unresolved Complaints</li>
-                </ul>
-            </li>
-            <li id="reports">Reports</li>
-            <li id="usersManagement">Users Management</li>
-            <li id="notifications">Notifications</li>
-            <li id="archive">Archive</li>
-            <li id="support">Support</li>
+            <li><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+            <li><i class="fas fa-cogs"></i> Master</li>
+            <li><i class="fas fa-exclamation-triangle"></i> Complaints</li>
+            <li><i class="fas fa-users"></i> Customers</li>
+            <li><i class="fas fa-box"></i> Products</li>
         </ul>
-        <div class="language-switch">
-            <label for="language-select">Language:</label>
-            <select id="language-select">
-                <option value="en">English</option>
+    </div>
+    <div class="main-content">
+        <div class="top-bar">
+            <h2>Dashboard</h2>
+            <input type="text" placeholder="Search Complaints">
+            <select onchange="changeLanguage(this.value)">
                 <option value="ar">العربية</option>
+                <option value="en">English</option>
             </select>
         </div>
+        <div class="content">
+            <h3>Pending Complaints</h3>
+            <table id="complaintsTable" class="display" width="100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Subject</th>
+                        <th>Engineer Status</th>
+                        <th>Complaint Type</th>
+                        <th>Product Serial No.</th>
+                        <th>Opened Since</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Battery Dead Problem</td>
+                        <td>Reached Home</td>
+                        <td>warranty</td>
+                        <td>1</td>
+                        <td>1 month</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Problem</td>
+                        <td>-</td>
+                        <td>non-warranty</td>
+                        <td>124</td>
+                        <td>1 month</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="cards">
+                <div class="card card-blue">CREATED 3</div>
+                <div class="card card-red">UNASSIGNED 0</div>
+                <div class="card card-yellow">OPEN 3</div>
+                <div class="card card-green">SOLVED 0</div>
+            </div>
+        </div>
     </div>
-    <div class="main-content animate__animated animate__fadeInLeft">
-        <header>
-            <h1 id="pendingComplaintsTitle">Pending Complaints</h1>
-            <button class="add-complaint"><i class="fas fa-plus"></i> Add Complaint</button>
-        </header>
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Complaint ID</th>
-                    <th>User</th>
-                    <th>Customer Name</th>
-                    <th>Contact Number</th>
-                    <th>Complaint Type</th>
-                    <th>Assigned To</th>
-                    <th>Complaint Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=1001">1001</a></td>
-                    <td>Battery Issue</td>
-                    <td>John Doe</td>
-                    <td>+123456789</td>
-                    <td>Warranty</td>
-                    <td>Engineer A</td>
-                    <td>Open</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=1001"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=1002">1002</a></td>
-                    <td>Screen Issue</td>
-                    <td>Jane Smith</td>
-                    <td>+987654321</td>
-                    <td>Out of Warranty</td>
-                    <td>Engineer B</td>
-                    <td>Pending</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=1002"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=1003">1003</a></td>
-                    <td>Software Issue</td>
-                    <td>Alice Brown</td>
-                    <td>+1122334455</td>
-                    <td>Technical Support</td>
-                    <td>Engineer C</td>
-                    <td>Resolved</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=1003"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <header>
-            <h1 id="newComplaintsTitle">New Complaints</h1>
-        </header>
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Complaint ID</th>
-                    <th>User</th>
-                    <th>Customer Name</th>
-                    <th>Contact Number</th>
-                    <th>Complaint Type</th>
-                    <th>Assigned To</th>
-                    <th>Complaint Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=2001">2001</a></td>
-                    <td>Network Issue</td>
-                    <td>Michael Johnson</td>
-                    <td>+2233445566</td>
-                    <td>Technical Support</td>
-                    <td>Engineer D</td>
-                    <td>New</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=2001"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=2002">2002</a></td>
-                    <td>Software Update</td>
-                    <td>Linda Green</td>
-                    <td>+6655443322</td>
-                    <td>Warranty</td>
-                    <td>Engineer E</td>
-                    <td>New</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=2002"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=2003">2003</a></td>
-                    <td>Battery
+</body>
+</html>
