@@ -6,6 +6,77 @@
     <title>Dashboard UI</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        const translations = {
+            en: {
+                dashboard: "Dashboard",
+                accessAuthority: "Access Authority",
+                userData: "User Data",
+                menuManagement: "Menu Management",
+                submenuManagement: "Submenu Management",
+                myProfile: "My Profile",
+                updateProfile: "Update Profile",
+                changePassword: "Change Password",
+                reportData: "Report Data",
+                signOut: "Sign Out",
+                totalAccess: "Total Access Authority",
+                registeredUsers: "Registered Users",
+                totalMenu: "Total Menu",
+                totalSubmenu: "Total Submenu",
+                reportTitle: "Report Title",
+                reportType: "Report Type",
+                date: "Date",
+                action: "Action",
+                detail: "Detail",
+                delete: "Delete"
+            },
+            ar: {
+                dashboard: "لوحة التحكم",
+                accessAuthority: "صلاحيات الوصول",
+                userData: "بيانات المستخدم",
+                menuManagement: "إدارة القائمة",
+                submenuManagement: "إدارة القوائم الفرعية",
+                myProfile: "ملفي الشخصي",
+                updateProfile: "تحديث الملف الشخصي",
+                changePassword: "تغيير كلمة المرور",
+                reportData: "بيانات الشكاوى",
+                signOut: "تسجيل الخروج",
+                totalAccess: "إجمالي الصلاحيات",
+                registeredUsers: "المستخدمون المسجلون",
+                totalMenu: "إجمالي القوائم",
+                totalSubmenu: "إجمالي القوائم الفرعية",
+                reportTitle: "عنوان الشكوى",
+                reportType: "نوع الشكوى",
+                date: "التاريخ",
+                action: "الإجراء",
+                detail: "تفاصيل",
+                delete: "حذف"
+            }
+        };
+        
+        function changeLanguage(lang) {
+            document.querySelector("#dashboard").innerText = translations[lang].dashboard;
+            document.querySelector("#accessAuthority").innerText = translations[lang].accessAuthority;
+            document.querySelector("#userData").innerText = translations[lang].userData;
+            document.querySelector("#menuManagement").innerText = translations[lang].menuManagement;
+            document.querySelector("#submenuManagement").innerText = translations[lang].submenuManagement;
+            document.querySelector("#myProfile").innerText = translations[lang].myProfile;
+            document.querySelector("#updateProfile").innerText = translations[lang].updateProfile;
+            document.querySelector("#changePassword").innerText = translations[lang].changePassword;
+            document.querySelector("#reportData").innerText = translations[lang].reportData;
+            document.querySelector("#signOut").innerText = translations[lang].signOut;
+            document.querySelector("#totalAccess").innerText = translations[lang].totalAccess;
+            document.querySelector("#registeredUsers").innerText = translations[lang].registeredUsers;
+            document.querySelector("#totalMenu").innerText = translations[lang].totalMenu;
+            document.querySelector("#totalSubmenu").innerText = translations[lang].totalSubmenu;
+            document.querySelector("#reportTitle").innerText = translations[lang].reportTitle;
+            document.querySelector("#reportType").innerText = translations[lang].reportType;
+            document.querySelector("#date").innerText = translations[lang].date;
+            document.querySelector("#action").innerText = translations[lang].action;
+            document.querySelectorAll(".detail").forEach(el => el.innerText = translations[lang].detail);
+            document.querySelectorAll(".delete").forEach(el => el.innerText = translations[lang].delete);
+        }
+    </script>
     <style>
         body {
             display: flex;
@@ -13,141 +84,53 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
         }
-        .sidebar {
-            width: 250px;
-            background: #005b96;
-            color: white;
-            padding: 20px;
-            min-height: 100vh;
-        }
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar ul li {
-            padding: 10px;
-            margin: 5px 0;
-            background: #007acc;
-            cursor: pointer;
-        }
-        .sidebar ul li:hover {
-            background: #ff6600;
-        }
-        .main-content {
-            flex: 1;
-            padding: 20px;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .card {
-            background: #007acc;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            font-weight: bold;
-            color: white;
-        }
-        .card span {
-            display: block;
-            font-size: 24px;
-            margin-top: 5px;
-        }
-        .report table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .report th, .report td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        .report th {
-            background: #007acc;
-            color: white;
-        }
-        .detail {
-            background: #007acc;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            cursor: pointer;
-        }
-        .delete {
-            background: #ff6600;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <h2>COMMUNITY COMPLAINTS</h2>
+        <select onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+        </select>
         <ul>
-            <li>Dashboard</li>
-            <li>Access Authority</li>
-            <li>User Data</li>
-            <li>Menu Management</li>
-            <li>Submenu Management</li>
-            <li>My Profile</li>
-            <li>Update Profile</li>
-            <li>Change Password</li>
-            <li>Report Data</li>
-            <li>Sign Out</li>
+            <li id="dashboard">Dashboard</li>
+            <li id="accessAuthority">Access Authority</li>
+            <li id="userData">User Data</li>
+            <li id="menuManagement">Menu Management</li>
+            <li id="submenuManagement">Submenu Management</li>
+            <li id="myProfile">My Profile</li>
+            <li id="updateProfile">Update Profile</li>
+            <li id="changePassword">Change Password</li>
+            <li id="reportData">Report Data</li>
+            <li id="signOut">Sign Out</li>
         </ul>
     </div>
     <div class="main-content">
         <header>
-            <h1>Dashboard</h1>
-            <div class="user">Liam Moore</div>
+            <h1 id="dashboard">Dashboard</h1>
         </header>
         <div class="stats">
-            <div class="card">Total Access Authority <span>2</span></div>
-            <div class="card">Registered Users <span>7</span></div>
-            <div class="card">Total Menu <span>5</span></div>
-            <div class="card">Total Submenu <span>10</span></div>
+            <div class="card" id="totalAccess">Total Access Authority <span>2</span></div>
+            <div class="card" id="registeredUsers">Registered Users <span>7</span></div>
+            <div class="card" id="totalMenu">Total Menu <span>5</span></div>
+            <div class="card" id="totalSubmenu">Total Submenu <span>10</span></div>
         </div>
         <section class="report">
-            <h2>Report Data</h2>
+            <h2 id="reportData">Report Data</h2>
             <table>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>NIK</th>
-                        <th>Report Title</th>
-                        <th>Report Type</th>
-                        <th>Date</th>
-                        <th>Action</th>
+                        <th id="reportTitle">Report Title</th>
+                        <th id="reportType">Report Type</th>
+                        <th id="date">Date</th>
+                        <th id="action">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Christine Moore</td>
-                        <td>12121</td>
                         <td>Demo</td>
                         <td>Corona Virus</td>
                         <td>03 May 2022</td>
@@ -155,20 +138,9 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Tiffany O. Errico</td>
-                        <td>3299000709012871</td>
                         <td>Need Education Help</td>
                         <td>Education</td>
                         <td>27 March 2022</td>
-                        <td><button class="detail">Detail</button> <button class="delete">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Marvin D. Behrens</td>
-                        <td>0311192857689401</td>
-                        <td>Flood</td>
-                        <td>Natural Disaster</td>
-                        <td>05 March 2022</td>
                         <td><button class="detail">Detail</button> <button class="delete">Delete</button></td>
                     </tr>
                 </tbody>
