@@ -6,6 +6,7 @@
     <title>Complaint Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -51,10 +52,15 @@
             border-radius: 5px;
             margin-bottom: 10px;
             animation: fadeInLeft 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
         }
         .sidebar ul li:hover {
             background: #0056b3;
             transform: scale(1.05);
+        }
+        .sidebar ul li i {
+            margin-right: 10px;
         }
         .sidebar ul li .dropdown-menu {
             display: none;
@@ -66,9 +72,6 @@
             list-style: none;
             width: 200px;
             border-radius: 5px 0 0 5px;
-        }
-        .sidebar ul li:hover .dropdown-menu {
-            display: block;
             animation: slideIn 0.3s ease-in-out;
         }
         .sidebar ul li .dropdown-menu li {
@@ -126,10 +129,10 @@
             background: #2ecc71;
         }
         table {
-            width: 100%;
+            width: auto;
             border-collapse: collapse;
             background: white;
-            font-size: 14px;
+            font-size: 12px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -138,7 +141,7 @@
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 15px;
+            padding: 10px;
             text-align: left;
             transition: background 0.3s ease-in-out;
         }
@@ -174,6 +177,33 @@
         }
         .complaint-id a:hover {
             color: #0056b3;
+        }
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .tab.orange {
+            background: orange;
+            color: white;
+        }
+        .tab.blue {
+            background: blue;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 0 5px 5px 5px;
+            background: white;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
         }
         @keyframes slideIn {
             from {
@@ -226,11 +256,36 @@
             }
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const savedLanguage = localStorage.getItem("language") || "en";
             document.getElementById("language-select").value = savedLanguage;
             changeLanguage(savedLanguage);
+
+            // Initialize DataTables
+            $('table').DataTable();
+
+            // Toggle dropdown menu
+            document.querySelectorAll('.sidebar ul li').forEach(item => {
+                item.addEventListener('click', event => {
+                    const dropdown = item.querySelector('.dropdown-menu');
+                    if (dropdown) {
+                        dropdown.classList.toggle('show');
+                    }
+                });
+            });
+
+            // Tab functionality
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.querySelector(`#${tab.dataset.target}`).classList.add('active');
+                });
+            });
         });
 
         function changeLanguage(selectedLang) {
@@ -270,32 +325,10 @@
                 ]
             };
 
-            document.querySelector("#pendingComplaintsTitle").innerText = elements.title[lang];
-            document.querySelector("#newComplaintsTitle").innerText = elements.newComplaintsTitle[lang];
-            document.querySelector("#unassignedComplaintsTitle").innerText = elements.unassignedComplaintsTitle[lang];
-            document.querySelector("#closedComplaintsTitle").innerText = elements.closedComplaintsTitle[lang];
-            document.querySelector("#unresolvedComplaintsTitle").innerText = elements.unresolvedComplaintsTitle[lang];
-            document.querySelector("#urgentComplaintsTitle").innerText = elements.urgentComplaintsTitle[lang];
-            document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${elements.addComplaint[lang]}`;
-            document.querySelector(".sidebar h2").innerText = elements.menu[lang];
-            document.getElementById("dashboard").innerText = elements.dashboard[lang];
-            document.getElementById("complaintsManagement").innerHTML = `${elements.complaintsManagement[lang]}
-                <ul class="dropdown-menu">
-                    <li>${elements.openComplaints[lang]}</li>
-                    <li>${elements.closedComplaints[lang]}</li>
-                    <li>${elements.pendingComplaints[lang]}</li>
-                    <li>${elements.urgentComplaints[lang]}</li>
-                    <li>${elements.unresolvedComplaints[lang]}</li>
-                </ul>`;
-            document.getElementById("reports").innerText = elements.reports[lang];
-            document.getElementById("usersManagement").innerText = elements.usersManagement[lang];
-            document.getElementById("notifications").innerText = elements.notifications[lang];
-            document.getElementById("archive").innerText = elements.archive[lang];
-            document.getElementById("support").innerText = elements.support[lang];
-            document.querySelector("label[for='language-select']").innerText = elements.languageLabel[lang];
-            document.querySelectorAll("th").forEach((th, index) => {
-                if (elements.tableHeaders[index]) {
-                    th.innerText = elements.tableHeaders[index][lang];
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (elements[key]) {
+                    element.innerText = elements[key][lang];
                 }
             });
 
@@ -309,26 +342,26 @@
 </head>
 <body>
     <div class="sidebar animate__animated animate__fadeInRight">
-        <h2>Complaints</h2>
+        <h2 data-translate="menu">Complaints</h2>
         <ul>
-            <li id="dashboard">Dashboard</li>
-            <li id="complaintsManagement">Complaints Management
+            <li id="dashboard"><i class="fas fa-tachometer-alt"></i> <span data-translate="dashboard">Dashboard</span></li>
+            <li id="complaintsManagement"><i class="fas fa-clipboard-list"></i> <span data-translate="complaintsManagement">Complaints Management</span>
                 <ul class="dropdown-menu">
-                    <li id="openComplaints">Open Complaints</li>
-                    <li id="closedComplaints">Closed Complaints</li>
-                    <li id="pendingComplaints">Pending Complaints</li>
-                    <li id="urgentComplaints">Urgent Complaints</li>
-                    <li id="unresolvedComplaints">Unresolved Complaints</li>
+                    <li id="openComplaints" data-translate="openComplaints">Open Complaints</li>
+                    <li id="closedComplaints" data-translate="closedComplaints">Closed Complaints</li>
+                    <li id="pendingComplaints" data-translate="pendingComplaints">Pending Complaints</li>
+                    <li id="urgentComplaints" data-translate="urgentComplaints">Urgent Complaints</li>
+                    <li id="unresolvedComplaints" data-translate="unresolvedComplaints">Unresolved Complaints</li>
                 </ul>
             </li>
-            <li id="reports">Reports</li>
-            <li id="usersManagement">Users Management</li>
-            <li id="notifications">Notifications</li>
-            <li id="archive">Archive</li>
-            <li id="support">Support</li>
+            <li id="reports"><i class="fas fa-chart-bar"></i> <span data-translate="reports">Reports</span></li>
+            <li id="usersManagement"><i class="fas fa-users"></i> <span data-translate="usersManagement">Users Management</span></li>
+            <li id="notifications"><i class="fas fa-bell"></i> <span data-translate="notifications">Notifications</span></li>
+            <li id="archive"><i class="fas fa-archive"></i> <span data-translate="archive">Archive</span></li>
+            <li id="support"><i class="fas fa-life-ring"></i> <span data-translate="support">Support</span></li>
         </ul>
         <div class="language-switch">
-            <label for="language-select">Language:</label>
+            <label for="language-select" data-translate="languageLabel">Language:</label>
             <select id="language-select">
                 <option value="en">English</option>
                 <option value="ar">العربية</option>
@@ -336,117 +369,81 @@
         </div>
     </div>
     <div class="main-content animate__animated animate__fadeInLeft">
-        <header>
-            <h1 id="pendingComplaintsTitle">Pending Complaints</h1>
-            <button class="add-complaint"><i class="fas fa-plus"></i> Add Complaint</button>
-        </header>
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Complaint ID</th>
-                    <th>User</th>
-                    <th>Customer Name</th>
-                    <th>Contact Number</th>
-                    <th>Complaint Type</th>
-                    <th>Assigned To</th>
-                    <th>Complaint Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=1001">1001</a></td>
-                    <td>Battery Issue</td>
-                    <td>John Doe</td>
-                    <td>+123456789</td>
-                    <td>Warranty</td>
-                    <td>Engineer A</td>
-                    <td>Open</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=1001"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=1002">1002</a></td>
-                    <td>Screen Issue</td>
-                    <td>Jane Smith</td>
-                    <td>+987654321</td>
-                    <td>Out of Warranty</td>
-                    <td>Engineer B</td>
-                    <td>Pending</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=1002"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=1003">1003</a></td>
-                    <td>Software Issue</td>
-                    <td>Alice Brown</td>
-                    <td>+1122334455</td>
-                    <td>Technical Support</td>
-                    <td>Engineer C</td>
-                    <td>Resolved</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=1003"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <header>
-            <h1 id="newComplaintsTitle">New Complaints</h1>
-        </header>
-        <table>
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Complaint ID</th>
-                    <th>User</th>
-                    <th>Customer Name</th>
-                    <th>Contact Number</th>
-                    <th>Complaint Type</th>
-                    <th>Assigned To</th>
-                    <th>Complaint Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=2001">2001</a></td>
-                    <td>Network Issue</td>
-                    <td>Michael Johnson</td>
-                    <td>+2233445566</td>
-                    <td>Technical Support</td>
-                    <td>Engineer D</td>
-                    <td>New</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=2001"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=2002">2002</a></td>
-                    <td>Software Update</td>
-                    <td>Linda Green</td>
-                    <td>+6655443322</td>
-                    <td>Warranty</td>
-                    <td>Engineer E</td>
-                    <td>New</td>
-                    <td class="actions">
-                        <a href="complaint-details.html?id=2002"><i class="fas fa-edit"></i></a>
-                        <i class="fas fa-external-link-alt"></i>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=2003">2003</a></td>
-                    <td>Battery
+        <div class="tabs">
+            <div class="tab orange" data-target="pendingComplaints">Pending Complaints</div>
+            <div class="tab blue" data-target="newComplaints">New Complaints</div>
+        </div>
+        <div id="pendingComplaints" class="tab-content active">
+            <header>
+                <h1 id="pendingComplaintsTitle" data-translate="title">Pending Complaints</h1>
+                <button class="add-complaint"><i class="fas fa-plus"></i> <span data-translate="addComplaint">Add Complaint</span></button>
+            </header>
+            <table class="display">
+                <thead>
+                    <tr>
+                        <th data-translate="tableHeaders[0]">#</th>
+                        <th data-translate="tableHeaders[1]">Complaint ID</th>
+                        <th data-translate="tableHeaders[2]">User</th>
+                        <th data-translate="tableHeaders[3]">Customer Name</th>
+                        <th data-translate="tableHeaders[4]">Contact Number</th>
+                        <th data-translate="tableHeaders[5]">Complaint Type</th>
+                        <th data-translate="tableHeaders[6]">Assigned To</th>
+                        <th data-translate="tableHeaders[7]">Complaint Status</th>
+                        <th data-translate="tableHeaders[8]">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td class="complaint-id"><a href="complaint-details.html?id=1001">1001</a></td>
+                        <td>Battery Issue</td>
+                        <td>John Doe</td>
+                        <td>+123456789</td>
+                        <td>Warranty</td>
+                        <td>Engineer A</td>
+                        <td>Open</td>
+                        <td class="actions">
+                            <a href="complaint-details.html?id=1001"><i class="fas fa-edit"></i></a>
+                            <i class="fas fa-external-link-alt"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="complaint-id"><a href="complaint-details.html?id=1002">1002</a></td>
+                        <td>Screen Issue</td>
+                        <td>Jane Smith</td>
+                        <td>+987654321</td>
+                        <td>Out of Warranty</td>
+                        <td>Engineer B</td>
+                        <td>Pending</td>
+                        <td class="actions">
+                            <a href="complaint-details.html?id=1002"><i class="fas fa-edit"></i></a>
+                            <i class="fas fa-external-link-alt"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="complaint-id"><a href="complaint-details.html?id=1003">1003</a></td>
+                        <td>Software Issue</td>
+                        <td>Alice Brown</td>
+                        <td>+1122334455</td>
+                        <td>Technical Support</td>
+                        <td>Engineer C</td>
+                        <td>Resolved</td>
+                        <td class="actions">
+                            <a href="complaint-details.html?id=1003"><i class="fas fa-edit"></i></a>
+                            <i class="fas fa-external-link-alt"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="newComplaints" class="tab-content">
+            <header>
+                <h1 id="newComplaintsTitle" data-translate="newComplaintsTitle">New Complaints</h1>
+            </header>
+            <table class="display">
+                <thead>
+                    <tr>
+                        <th data-translate="tableHeaders[0]">#</th>
+                        <th data-translate="tableHeaders
