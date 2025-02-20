@@ -183,8 +183,9 @@
         }
         .search-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start; /* Changed to flex-start */
             margin-bottom: 20px;
+            align-items: center; /* Align items to center */
         }
         .search-box {
             display: flex;
@@ -208,7 +209,7 @@
             background: #007BFF;
             color: white;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 24px; /* Adjusted margin to align with inputs */
         }
         .search-box button:hover {
             background: #0056b3;
@@ -449,5 +450,4 @@
                 </tr>
                 <tr>
                     <td>3</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=1003">1003</a></td>
-                    <td>Alice Brown</
+                    <td class="complaint-id
