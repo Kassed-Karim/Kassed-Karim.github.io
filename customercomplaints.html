@@ -152,6 +152,7 @@
             const elements = {
                 "title": { en: "Pending Complaints", ar: "الشكاوى المعلقة" },
                 "newComplaintsTitle": { en: "New Complaints", ar: "الشكاوى الجديدة" },
+                "unassignedComplaintsTitle": { en: "Unassigned Complaints", ar: "الشكاوى غير المخصصة" },
                 "addComplaint": { en: "Add Complaint", ar: "إضافة شكوى" },
                 "menu": { en: "Complaints", ar: "الشكاوى" },
                 "dashboard": { en: "Dashboard", ar: "لوحة التحكم" },
@@ -182,6 +183,7 @@
 
             document.querySelector("#pendingComplaintsTitle").innerText = elements.title[lang];
             document.querySelector("#newComplaintsTitle").innerText = elements.newComplaintsTitle[lang];
+            document.querySelector("#unassignedComplaintsTitle").innerText = elements.unassignedComplaintsTitle[lang];
             document.querySelector(".add-complaint").innerHTML = `<i class="fas fa-plus"></i> ${elements.addComplaint[lang]}`;
             document.querySelector(".sidebar h2").innerText = elements.menu[lang];
             document.getElementById("dashboard").innerText = elements.dashboard[lang];
@@ -363,6 +365,69 @@
                     <td>New</td>
                     <td class="actions">
                         <a href="complaint-details.html?id=1006"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <header>
+            <h1 id="unassignedComplaintsTitle">Unassigned Complaints</h1>
+        </header>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Complaint ID</th>
+                    <th>User</th>
+                    <th>Customer Name</th>
+                    <th>Contact Number</th>
+                    <th>Complaint Type</th>
+                    <th>Assigned To</th>
+                    <th>Complaint Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>7</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1007">1007</a></td>
+                    <td>Connection Issue</td>
+                    <td>Sarah Wilson</td>
+                    <td>+3344556677</td>
+                    <td>Out of Warranty</td>
+                    <td>Unassigned</td>
+                    <td>Open</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=1007"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1008">1008</a></td>
+                    <td>Hardware Failure</td>
+                    <td>Mark Wilson</td>
+                    <td>+9988776655</td>
+                    <td>Warranty</td>
+                    <td>Unassigned</td>
+                    <td>Open</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=1008"><i class="fas fa-edit"></i></a>
+                        <i class="fas fa-external-link-alt"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td class="complaint-id"><a href="complaint-details.html?id=1009">1009</a></td>
+                    <td>Software Bug</td>
+                    <td>Emma Taylor</td>
+                    <td>+1122446688</td>
+                    <td>Technical Support</td>
+                    <td>Unassigned</td>
+                    <td>Open</td>
+                    <td class="actions">
+                        <a href="complaint-details.html?id=1009"><i class="fas fa-edit"></i></a>
                         <i class="fas fa-external-link-alt"></i>
                     </td>
                 </tr>
