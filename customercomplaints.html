@@ -1,129 +1,84 @@
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Table } from "@/components/ui/table";
-import { Sidebar } from "@/components/ui/sidebar";
-import { UserAvatar } from "@/components/ui/user-avatar";
-import { FaUsers, FaClipboardList, FaFolder, FaFileAlt } from "react-icons/fa";
-
-export default function Dashboard() {
-  return (
-    <div className="flex min-h-screen bg-gray-100">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main Content */}
-      <div className="flex-1 p-6">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-semibold">Dashboard</h1>
-          <UserAvatar name="Liam Moore" />
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-4 gap-4 mb-6">
-          <Card className="border-l-4 border-blue-500">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-600">TOTAL ACCESS AUTHORITY</p>
-                  <p className="text-2xl font-bold">2</p>
-                </div>
-                <FaUsers className="text-blue-500 text-3xl" />
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="border-l-4 border-green-500">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-600">REGISTERED USERS</p>
-                  <p className="text-2xl font-bold">7</p>
-                </div>
-                <FaClipboardList className="text-green-500 text-3xl" />
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="border-l-4 border-yellow-500">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-600">TOTAL MENU</p>
-                  <p className="text-2xl font-bold">5</p>
-                </div>
-                <FaFolder className="text-yellow-500 text-3xl" />
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="border-l-4 border-red-500">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-600">TOTAL SUBMENU</p>
-                  <p className="text-2xl font-bold">10</p>
-                </div>
-                <FaFileAlt className="text-red-500 text-3xl" />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Report Data Table */}
-        <div className="bg-white p-4 rounded-lg shadow">
-          <h2 className="text-lg font-semibold mb-4">Report Data</h2>
-          <Table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>NIK</th>
-                <th>Report Title</th>
-                <th>Report Type</th>
-                <th>Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Christine Moore</td>
-                <td>12121</td>
-                <td>Demo</td>
-                <td>Corona Virus</td>
-                <td>03 May 2022</td>
-                <td>
-                  <Button variant="outline">Detail</Button>
-                  <Button variant="destructive" className="ml-2">Delete</Button>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Tiffany O. Errico</td>
-                <td>3299000709012871</td>
-                <td>Need Education Help</td>
-                <td>Education</td>
-                <td>27 March 2022</td>
-                <td>
-                  <Button variant="outline">Detail</Button>
-                  <Button variant="destructive" className="ml-2">Delete</Button>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Marvin D. Behrens</td>
-                <td>0311192857689401</td>
-                <td>Flood</td>
-                <td>Natural Disaster</td>
-                <td>05 March 2022</td>
-                <td>
-                  <Button variant="outline">Detail</Button>
-                  <Button variant="destructive" className="ml-2">Delete</Button>
-                </td>
-              </tr>
-            </tbody>
-          </Table>
-        </div>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard UI</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>COMMUNITY COMPLAINTS</h2>
+        <ul>
+            <li>Dashboard</li>
+            <li>Access Authority</li>
+            <li>User Data</li>
+            <li>Menu Management</li>
+            <li>Submenu Management</li>
+            <li>My Profile</li>
+            <li>Update Profile</li>
+            <li>Change Password</li>
+            <li>Report Data</li>
+            <li>Sign Out</li>
+        </ul>
     </div>
-  );
-}
+    <div class="main-content">
+        <header>
+            <h1>Dashboard</h1>
+            <div class="user">Liam Moore</div>
+        </header>
+        <div class="stats">
+            <div class="card">Total Access Authority <span>2</span></div>
+            <div class="card">Registered Users <span>7</span></div>
+            <div class="card">Total Menu <span>5</span></div>
+            <div class="card">Total Submenu <span>10</span></div>
+        </div>
+        <section class="report">
+            <h2>Report Data</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>NIK</th>
+                        <th>Report Title</th>
+                        <th>Report Type</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Christine Moore</td>
+                        <td>12121</td>
+                        <td>Demo</td>
+                        <td>Corona Virus</td>
+                        <td>03 May 2022</td>
+                        <td><button class="detail">Detail</button> <button class="delete">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Tiffany O. Errico</td>
+                        <td>3299000709012871</td>
+                        <td>Need Education Help</td>
+                        <td>Education</td>
+                        <td>27 March 2022</td>
+                        <td><button class="detail">Detail</button> <button class="delete">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Marvin D. Behrens</td>
+                        <td>0311192857689401</td>
+                        <td>Flood</td>
+                        <td>Natural Disaster</td>
+                        <td>05 March 2022</td>
+                        <td><button class="detail">Detail</button> <button class="delete">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>
