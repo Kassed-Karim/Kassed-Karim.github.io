@@ -1,3 +1,6 @@
+لقد قمت بإضافة بعض المؤثرات البصرية الجذابة والمريحة للعين إلى الكود الخاص بك باستخدام CSS. لقد قمت بتعديل الألوان، إضافة تأثيرات الماوس، واستخدام الخطوط الحديثة.
+
+```html name=index.html
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -5,18 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Cairo', sans-serif;
         }
 
         body {
             display: flex;
             flex-direction: row-reverse;
             height: 100vh;
-            background-color: orange;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
         }
 
         .sidebar {
@@ -28,10 +33,13 @@
             flex-direction: column;
             justify-content: space-between;
             height: 100vh;
+            transition: all 0.3s ease;
         }
 
         .sidebar h2 {
             margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
         }
 
         .sidebar ul {
@@ -40,11 +48,12 @@
         }
 
         .sidebar ul li {
-            padding: 10px;
+            padding: 15px;
             margin: 10px 0;
             background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
         .sidebar ul li:hover {
@@ -52,9 +61,9 @@
         }
 
         .language-switch {
-            padding: 5px;
+            padding: 10px;
             background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
+            border-radius: 10px;
             text-align: center;
         }
 
@@ -64,8 +73,14 @@
             color: white;
             font-size: 14px;
             cursor: pointer;
-            margin: 3px;
-            padding: 5px;
+            margin: 3px 5px;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .language-switch button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
         }
 
         .content {
@@ -78,34 +93,36 @@
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
         }
 
         .card {
-            background-color: blue;
-            padding: 60px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background-color: #007bff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             color: white;
             text-align: center;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
         .card:hover {
-            background-color: darkblue;
+            background-color: #0056b3;
+            transform: translateY(-10px);
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <div>
-            <h2 id="dashboard-title">Control Panel</h2>
+            <h2 id="dashboard-title">لوحة التحكم</h2>
             <ul>
                 <li data-en="Home" data-ar="الرئيسية">الرئيسية</li>
-                <li data-en="Control Panel" data-ar="لوحة التحكم">Control Panel</li>
+                <li data-en="Control Panel" data-ar="لوحة التحكم">لوحة التحكم</li>
                 <li data-en="Notifications" data-ar="الإشعارات">الإشعارات</li>
                 <li data-en="Accounts" data-ar="الحسابات">الحسابات</li>
                 <li data-en="Security" data-ar="الأمان">الأمان</li>
@@ -157,3 +174,4 @@
     </script>
 </body>
 </html>
+```
