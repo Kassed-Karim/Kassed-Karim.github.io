@@ -298,6 +298,11 @@
                 table.columns(4).search(customerNumber).draw();
                 table.columns(7).search(complaintStatus).draw();
             });
+
+            // Redirect to new complaint page
+            document.querySelector('.add-complaint').addEventListener('click', () => {
+                window.location.href = 'https://Kassed-Karim.github.io/newcomplaint.html';
+            });
         });
 
         function changeLanguage(selectedLang) {
@@ -446,9 +451,3 @@
                     <td class="actions">
                         <a href="complaint-details.html?id=1002"><i class="fas fa-edit"></i></a>
                         <a href="complaint-details.html?id=1002"><i class="fas fa-external-link-alt"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="complaint-id"><a href="complaint-details.html?id=1003">1003</a></td>
-                   
