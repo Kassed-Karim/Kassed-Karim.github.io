@@ -1,129 +1,101 @@
-import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Snackbar, Alert } from '@mui/material';
-import axios from 'axios';
-
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [open, setOpen] = useState(false);
-  const [alert, setAlert] = useState({ type: '', message: '' });
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await axios.post('/api/login', { email, password });
-      // هنا هنكتب الكود اللي هيتعامل مع استجابة API
-      console.log(response.data);
-      setAlert({ type: 'success', message: 'تم تسجيل الدخول بنجاح' });
-      setOpen(true);
-    } catch (error) {
-      // هنا هنكتب الكود اللي هيتعامل مع أخطاء API
-      console.error(error);
-      setAlert({ type: 'error', message: 'خطأ في تسجيل الدخول' });
-      setOpen(true);
-    }
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  };
-
-  return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      <Typography variant="h4" gutterBottom>تسجيل الدخول</Typography>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          label="البريد الإلكتروني"
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          fullWidth
-          margin="normal"
-          required
-        />
-        <TextField
-          label="كلمة المرور"
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          fullWidth
-          margin="normal"
-          required
-        />
-        <Button variant="contained" type="submit">تسجيل الدخول</Button>
-      </form>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity={alert.type} sx={{ width: '100%' }}>
-          {alert.message}
-        </Alert>
-      </Snackbar>
-    </Box>
-  );
-}
-
-export default Login;
-import React, { useState, useEffect } from 'react';
-import { Box, Typography, Grid, Card, CardContent } from '@mui/material';
-import axios from 'axios';
-
-function Dashboard() {
-  const [complaints, setComplaints] = useState([]);
-
-  useEffect(() => {
-    const fetchComplaints = async () => {
-      try {
-        const response = await axios.get('/api/complaints');
-        setComplaints(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchComplaints();
-  }, []);
-
-  return (
-    <Box sx={{ flexGrow: 1, p: 3 }}>
-      <Typography variant="h4" gutterBottom>لوحة التحكم</Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6} md={3}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" component="h2">الشكاوى الجديدة</Typography>
-              <Typography variant="h3" component="h1">10</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" component="h2">الشكاوى قيد المراجعة</Typography>
-              <Typography variant="h3" component="h1">5</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" component="h2">الشكاوى التي تم حلها</Typography>
-              <Typography variant="h3" component="h1">20</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Card>
-            <CardContent>
-              <Typography variant="h5" component="h2">إجمالي الشكاوى</Typography>
-              <Typography variant="h3" component="h1">{complaints.length}</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-    </Box>
-  );
-}
-
-export default Dashboard;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UI من الصورة</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <ul class="menu">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Access Authority</a></li>
+            <li><a href="#">User Data</a></li>
+            <li><a href="#">Menu Management</a></li>
+            <li><a href="#">Submenu Management</a></li>
+            <li><a href="#">My Profile</a></li>
+            <li><a href="#">Update Profile</a></li>
+            <li><a href="#">Change Password</a></li>
+            <li><a href="#">Report Data</a></li>
+            <li><a href="#">Sign Out</a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <h1>Dashboard</h1>
+        <div class="boxes">
+            <div class="box">
+                <h2>Total Access Authority</h2>
+                <p>2</p>
+            </div>
+            <div class="box">
+                <h2>Registered Users</h2>
+                <p>7</p>
+            </div>
+            <div class="box">
+                <h2>Total Menu</h2>
+                <p>5</p>
+            </div>
+            <div class="box">
+                <h2>Total Submenu</h2>
+                <p>10</p>
+            </div>
+            <div class="box">
+                <h2>Total Report</h2>
+                <p>3</p>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>NIK</th>
+                        <th>Report Title</th>
+                        <th>Report Type</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Christine Moore</td>
+                        <td>12121</td>
+                        <td>Demo</td>
+                        <td>Corona Virus</td>
+                        <td>03 May 2022</td>
+                        <td><button class="detail-button">Detail</button> <button class="delete-button">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Tiffany O. Errico</td>
+                        <td>3299000709012871</td>
+                        <td>Need Education Help</td>
+                        <td>Education</td>
+                        <td>27 March 2022</td>
+                        <td><button class="detail-button">Detail</button> <button class="delete-button">Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Marvin D. Behrens</td>
+                        <td>0311192857689401</td>
+                        <td>Flood</td>
+                        <td>Natural Disaster</td>
+                        <td>05 March 2022</td>
+                        <td><button class="detail-button">Detail</button> <button class="delete-button">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="pagination">
+                <button>Previous</button>
+                <button>1</button>
+                <button>Next</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
