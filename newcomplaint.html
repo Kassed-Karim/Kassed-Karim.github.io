@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f3f4f6;
+            background-color: #6a1b9a;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,39 +20,85 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 400px;
+            max-width: 600px;
         }
-        h2 {
-            text-align: center;
+        .header {
+            background-color: #6a1b9a;
+            color: white;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .settings {
+            display: flex;
+            gap: 10px;
             margin-bottom: 20px;
         }
-        input, textarea, button {
-            width: 100%;
+        .sidebar {
+            background-color: #f3f4f6;
+            padding: 15px;
+            border-radius: 5px;
+            width: 150px;
+        }
+        .sidebar div {
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .sidebar div:hover {
+            background-color: #ddd;
+        }
+        .form-section {
+            flex-grow: 1;
+        }
+        input, textarea {
+            width: calc(100% - 20px);
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            display: block;
         }
         button {
-            background-color: #007bff;
+            background-color: #4caf50;
             color: white;
             border: none;
+            padding: 10px 15px;
             cursor: pointer;
+            border-radius: 5px;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #388e3c;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>نموذج شكاوى العملاء</h2>
-        <form>
-            <input type="text" name="name" placeholder="الاسم الكامل" required>
-            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-            <textarea name="complaint" placeholder="اكتب شكواك هنا..." required></textarea>
-            <button type="submit">إرسال الشكوى</button>
-        </form>
+        <div class="header">الإعدادات</div>
+        <div class="settings">
+            <div class="sidebar">
+                <div>عام</div>
+                <div>البريد الإلكتروني</div>
+            </div>
+            <div class="form-section">
+                <h2>عام</h2>
+                <label>اسم النموذج</label>
+                <input type="text" value="نموذج شكاوى العملاء">
+                <label>وصف النموذج</label>
+                <textarea></textarea>
+                <label>رسالة تعطيل النموذج</label>
+                <textarea>هذا النموذج معطل.</textarea>
+                <label>رسالة نجاح الإرسال</label>
+                <textarea>شكرًا لتواصلك معنا! سنتواصل معك قريبًا.</textarea>
+                <input type="checkbox" checked> التمرير تلقائيًا إلى رسالة الإرسال
+                <br><br>
+                <button>حفظ</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
