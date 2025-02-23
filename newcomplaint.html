@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function ComplaintForm() {
   const [formData, setFormData] = useState({ name: "", email: "", complaint: "" });
@@ -21,42 +17,44 @@ export default function ComplaintForm() {
 
   return (
     <motion.div 
-      className="flex justify-center items-center h-screen bg-gray-100"
+      className="flex justify-center items-center h-screen bg-gray-100 p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <Card className="w-full max-w-lg p-6 bg-white shadow-2xl rounded-2xl">
-        <CardContent>
-          <h2 className="text-2xl font-bold text-center mb-4">نموذج شكاوى العملاء</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input 
-              type="text" 
-              name="name" 
-              placeholder="الاسم الكامل" 
-              value={formData.name} 
-              onChange={handleChange} 
-              required 
-            />
-            <Input 
-              type="email" 
-              name="email" 
-              placeholder="البريد الإلكتروني" 
-              value={formData.email} 
-              onChange={handleChange} 
-              required 
-            />
-            <Textarea 
-              name="complaint" 
-              placeholder="اكتب شكواك هنا..." 
-              value={formData.complaint} 
-              onChange={handleChange} 
-              required 
-            />
-            <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-xl">إرسال الشكوى</Button>
-          </form>
-        </CardContent>
-      </Card>
+      <Toaster />
+      <div className="w-full max-w-lg p-6 bg-white shadow-xl rounded-2xl">
+        <h2 className="text-2xl font-bold text-center mb-4">نموذج شكاوى العملاء</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input 
+            type="text" 
+            name="name" 
+            placeholder="الاسم الكامل" 
+            value={formData.name} 
+            onChange={handleChange} 
+            required 
+            className="w-full p-2 border rounded-lg"
+          />
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="البريد الإلكتروني" 
+            value={formData.email} 
+            onChange={handleChange} 
+            required 
+            className="w-full p-2 border rounded-lg"
+          />
+          <textarea 
+            name="complaint" 
+            placeholder="اكتب شكواك هنا..." 
+            value={formData.complaint} 
+            onChange={handleChange} 
+            required 
+            className="w-full p-2 border rounded-lg"
+          />
+          <button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg">إرسال الشكوى</button>
+        </form>
+      </div>
     </motion.div>
   );
 }
