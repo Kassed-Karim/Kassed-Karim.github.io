@@ -30,19 +30,22 @@
             font-weight: bold;
             display: block;
             margin: 10px 0 5px;
+            font-size: 16px;
+            color: #333;
         }
         input, textarea, select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 14px;
         }
         button {
             background-color: #6a1b9a;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 12px 15px;
             cursor: pointer;
             border-radius: 5px;
             width: 100%;
@@ -57,39 +60,39 @@
     <div class="container">
         <h2>نموذج شكاوى العملاء</h2>
         <form>
-            <label>رقم الشكوى</label>
-            <input type="text" placeholder="أدخل رقم الشكوى">
+            <label for="complaint-id">رقم الشكوى</label>
+            <input type="text" id="complaint-id" placeholder="أدخل رقم الشكوى">
             
-            <label>اسم العميل</label>
-            <input type="text" placeholder="أدخل اسم العميل">
+            <label for="customer-name">اسم العميل</label>
+            <input type="text" id="customer-name" placeholder="أدخل اسم العميل">
             
-            <label>رقم التواصل</label>
-            <input type="text" placeholder="+2 ...">
+            <label for="customer-contact">رقم التواصل</label>
+            <input type="text" id="customer-contact" placeholder="+2 ...">
             
-            <label>نوع الشكوى</label>
-            <select>
+            <label for="complaint-type">نوع الشكوى</label>
+            <select id="complaint-type">
                 <option>اختر نوع الشكوى</option>
                 <option>خدمة العملاء</option>
                 <option>جودة المنتج</option>
                 <option>تأخير الشحن</option>
             </select>
             
-            <label>تفاصيل الشكوى</label>
-            <textarea rows="4" placeholder="أدخل تفاصيل الشكوى"></textarea>
+            <label for="complaint-details">تفاصيل الشكوى</label>
+            <textarea id="complaint-details" rows="4" placeholder="أدخل تفاصيل الشكوى"></textarea>
             
-            <label>اسم الفرع</label>
-            <select>
+            <label for="branch-name">اسم الفرع</label>
+            <select id="branch-name">
                 <option>اختر الفرع</option>
                 <option>الفرع الرئيسي</option>
                 <option>فرع المدينة</option>
                 <option>فرع السوق</option>
             </select>
             
-            <label>الإجراء المتخذ</label>
-            <textarea rows="3" placeholder="أدخل الإجراء المتخذ"></textarea>
+            <label for="action-taken">الإجراء المتخذ</label>
+            <textarea id="action-taken" rows="3" placeholder="أدخل الإجراء المتخذ"></textarea>
             
-            <label>حالة الشكوى</label>
-            <select>
+            <label for="complaint-status">حالة الشكوى</label>
+            <select id="complaint-status">
                 <option>جاري المراجعة</option>
                 <option>تم الحل</option>
                 <option>مرفوضة</option>
