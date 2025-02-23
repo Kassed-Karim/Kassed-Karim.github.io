@@ -1,129 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Complaint</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: orange;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow-y: auto;
-        }
-        .container {
-            width: 50%;
-            background: #f8f8f8;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            color: black;
-            animation: fadeIn 1s ease-in-out;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .header {
-            text-align: center;
-            font-size: 28px;
-            font-weight: bold;
-            color: black;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 3px solid black;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            animation: slideDown 1s ease-in-out;
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .form-section h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: black;
-            border-bottom: 2px solid black;
-            padding-bottom: 5px;
-        }
-        .form-group label {
-            font-size: 14px;
-            font-weight: 500;
-            flex: 1 1 100%;
-            color: black;
-        }
-        .form-group input, .form-group textarea {
-            flex: 1;
-            min-width: calc(50% - 10px);
-            padding: 10px;
-            border: 1px solid black;
-            border-radius: 8px;
-            font-size: 12px;
-            background: transparent;
-            color: black;
-            transition: all 0.3s ease;
-        }
-        .form-group textarea {
-            min-height: 80px;
-            width: 100%;
-        }
-        button {
-            padding: 12px;
-            background-color: black;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: transform 0.3s, background 0.3s;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">Customer Complaint</div>
-        
-        <form>
-            <div class="form-section">
-                <h2>Your Information</h2>
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" placeholder="First Name">
-                    <input type="text" placeholder="Last Name">
-                </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" placeholder="example@example.com">
-                </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" placeholder="(000) 000-0000">
-                </div>
-            </div>
-            <div class="form-section">
-                <h2>Complaint Details</h2>
-                <div class="form-group">
-                    <label>What is the nature of your complaint?</label>
-                    <textarea></textarea>
-                </div>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</body>
-</html>
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "react-hot-toast";
+
+export default function ComplaintForm() {
+  const [formData, setFormData] = useState({ name: "", email: "", complaint: "" });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    toast.success("تم إرسال الشكوى بنجاح!");
+    setFormData({ name: "", email: "", complaint: "" });
+  };
+
+  return (
+    <motion.div 
+      className="flex justify-center items-center h-screen bg-gray-100"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <Card className="w-full max-w-lg p-6 bg-white shadow-2xl rounded-2xl">
+        <CardContent>
+          <h2 className="text-2xl font-bold text-center mb-4">نموذج شكاوى العملاء</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <Input 
+              type="text" 
+              name="name" 
+              placeholder="الاسم الكامل" 
+              value={formData.name} 
+              onChange={handleChange} 
+              required 
+            />
+            <Input 
+              type="email" 
+              name="email" 
+              placeholder="البريد الإلكتروني" 
+              value={formData.email} 
+              onChange={handleChange} 
+              required 
+            />
+            <Textarea 
+              name="complaint" 
+              placeholder="اكتب شكواك هنا..." 
+              value={formData.complaint} 
+              onChange={handleChange} 
+              required 
+            />
+            <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-xl">إرسال الشكوى</Button>
+          </form>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
