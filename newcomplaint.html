@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #6a1b9a;
+            background-color: #f3f4f6;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,85 +20,83 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
         }
-        .header {
-            background-color: #6a1b9a;
-            color: white;
-            padding: 15px;
-            font-size: 20px;
+        h2 {
+            text-align: center;
+            color: #6a1b9a;
+        }
+        label {
             font-weight: bold;
-            text-align: left;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            display: block;
+            margin: 10px 0 5px;
         }
-        .settings {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .sidebar {
-            background-color: #f3f4f6;
-            padding: 15px;
-            border-radius: 5px;
-            width: 150px;
-        }
-        .sidebar div {
-            padding: 10px;
-            margin-bottom: 5px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .sidebar div:hover {
-            background-color: #ddd;
-        }
-        .form-section {
-            flex-grow: 1;
-        }
-        input, textarea {
-            width: calc(100% - 20px);
+        input, textarea, select {
+            width: 100%;
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            display: block;
         }
         button {
-            background-color: #4caf50;
+            background-color: #6a1b9a;
             color: white;
             border: none;
             padding: 10px 15px;
             cursor: pointer;
             border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
         }
         button:hover {
-            background-color: #388e3c;
+            background-color: #4a127a;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">الإعدادات</div>
-        <div class="settings">
-            <div class="sidebar">
-                <div>عام</div>
-                <div>البريد الإلكتروني</div>
-            </div>
-            <div class="form-section">
-                <h2>عام</h2>
-                <label>اسم النموذج</label>
-                <input type="text" value="نموذج شكاوى العملاء">
-                <label>وصف النموذج</label>
-                <textarea></textarea>
-                <label>رسالة تعطيل النموذج</label>
-                <textarea>هذا النموذج معطل.</textarea>
-                <label>رسالة نجاح الإرسال</label>
-                <textarea>شكرًا لتواصلك معنا! سنتواصل معك قريبًا.</textarea>
-                <input type="checkbox" checked> التمرير تلقائيًا إلى رسالة الإرسال
-                <br><br>
-                <button>حفظ</button>
-            </div>
-        </div>
+        <h2>نموذج شكاوى العملاء</h2>
+        <form>
+            <label>رقم الشكوى</label>
+            <input type="text" placeholder="أدخل رقم الشكوى">
+            
+            <label>اسم العميل</label>
+            <input type="text" placeholder="أدخل اسم العميل">
+            
+            <label>رقم التواصل</label>
+            <input type="text" placeholder="+2 ...">
+            
+            <label>نوع الشكوى</label>
+            <select>
+                <option>اختر نوع الشكوى</option>
+                <option>خدمة العملاء</option>
+                <option>جودة المنتج</option>
+                <option>تأخير الشحن</option>
+            </select>
+            
+            <label>تفاصيل الشكوى</label>
+            <textarea rows="4" placeholder="أدخل تفاصيل الشكوى"></textarea>
+            
+            <label>اسم الفرع</label>
+            <select>
+                <option>اختر الفرع</option>
+                <option>الفرع الرئيسي</option>
+                <option>فرع المدينة</option>
+                <option>فرع السوق</option>
+            </select>
+            
+            <label>الإجراء المتخذ</label>
+            <textarea rows="3" placeholder="أدخل الإجراء المتخذ"></textarea>
+            
+            <label>حالة الشكوى</label>
+            <select>
+                <option>جاري المراجعة</option>
+                <option>تم الحل</option>
+                <option>مرفوضة</option>
+            </select>
+            
+            <button type="submit">إرسال</button>
+        </form>
     </div>
 </body>
 </html>
