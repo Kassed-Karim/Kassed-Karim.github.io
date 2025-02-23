@@ -54,51 +54,68 @@
         button:hover {
             background-color: #4a127a;
         }
+        .language-switch {
+            text-align: right;
+            margin-bottom: 10px;
+        }
     </style>
+    <script>
+        function switchLanguage(lang) {
+            document.documentElement.lang = lang;
+            const elements = document.querySelectorAll("[data-en], [data-ar]");
+            elements.forEach(el => {
+                el.textContent = lang === 'en' ? el.getAttribute("data-en") : el.getAttribute("data-ar");
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="container">
-        <h2>نموذج شكاوى العملاء</h2>
+        <div class="language-switch">
+            <button onclick="switchLanguage('ar')">العربية</button>
+            <button onclick="switchLanguage('en')">English</button>
+        </div>
+        <h2 data-en="Customer Complaint Form" data-ar="نموذج شكاوى العملاء">نموذج شكاوى العملاء</h2>
         <form>
-            <label for="complaint-id">رقم الشكوى</label>
+            <label for="complaint-id" data-en="Complaint ID" data-ar="رقم الشكوى">رقم الشكوى</label>
             <input type="text" id="complaint-id" placeholder="أدخل رقم الشكوى">
             
-            <label for="customer-name">اسم العميل</label>
+            <label for="customer-name" data-en="Customer Name" data-ar="اسم العميل">اسم العميل</label>
             <input type="text" id="customer-name" placeholder="أدخل اسم العميل">
             
-            <label for="customer-contact">رقم التواصل</label>
+            <label for="customer-contact" data-en="Customer Contact" data-ar="رقم التواصل">رقم التواصل</label>
             <input type="text" id="customer-contact" placeholder="+2 ...">
             
-            <label for="complaint-type">نوع الشكوى</label>
+            <label for="complaint-type" data-en="Complaint Type" data-ar="نوع الشكوى">نوع الشكوى</label>
             <select id="complaint-type">
-                <option>اختر نوع الشكوى</option>
-                <option>خدمة العملاء</option>
-                <option>جودة المنتج</option>
-                <option>تأخير الشحن</option>
+                <option data-en="Select Complaint Type" data-ar="اختر نوع الشكوى">اختر نوع الشكوى</option>
+                <option data-en="Customer Service" data-ar="خدمة العملاء">خدمة العملاء</option>
+                <option data-en="Product Quality" data-ar="جودة المنتج">جودة المنتج</option>
+                <option data-en="Shipping Delay" data-ar="تأخير الشحن">تأخير الشحن</option>
             </select>
             
-            <label for="complaint-details">تفاصيل الشكوى</label>
+            <label for="complaint-details" data-en="Complaint Details" data-ar="تفاصيل الشكوى">تفاصيل الشكوى</label>
             <textarea id="complaint-details" rows="4" placeholder="أدخل تفاصيل الشكوى"></textarea>
             
-            <label for="branch-name">اسم الفرع</label>
+            <label for="branch-name" data-en="Branch Name" data-ar="اسم الفرع">اسم الفرع</label>
             <select id="branch-name">
-                <option>اختر الفرع</option>
-                <option>الفرع الرئيسي</option>
-                <option>فرع المدينة</option>
-                <option>فرع السوق</option>
+                <option data-en="Select Branch" data-ar="اختر الفرع">اختر الفرع</option>
+                <option data-en="Main Branch" data-ar="الفرع الرئيسي">الفرع الرئيسي</option>
+                <option data-en="City Branch" data-ar="فرع المدينة">فرع المدينة</option>
+                <option data-en="Market Branch" data-ar="فرع السوق">فرع السوق</option>
             </select>
             
-            <label for="action-taken">الإجراء المتخذ</label>
+            <label for="action-taken" data-en="Action Taken" data-ar="الإجراء المتخذ">الإجراء المتخذ</label>
             <textarea id="action-taken" rows="3" placeholder="أدخل الإجراء المتخذ"></textarea>
             
-            <label for="complaint-status">حالة الشكوى</label>
+            <label for="complaint-status" data-en="Complaint Status" data-ar="حالة الشكوى">حالة الشكوى</label>
             <select id="complaint-status">
-                <option>جاري المراجعة</option>
-                <option>تم الحل</option>
-                <option>مرفوضة</option>
+                <option data-en="Under Review" data-ar="جاري المراجعة">جاري المراجعة</option>
+                <option data-en="Resolved" data-ar="تم الحل">تم الحل</option>
+                <option data-en="Rejected" data-ar="مرفوضة">مرفوضة</option>
             </select>
             
-            <button type="submit">إرسال</button>
+            <button type="submit" data-en="Submit" data-ar="إرسال">إرسال</button>
         </form>
     </div>
 </body>
